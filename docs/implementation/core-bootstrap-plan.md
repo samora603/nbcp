@@ -1,7 +1,7 @@
 # Core Bootstrap Plan
 
 **Status:** Implementation sequencing (documentation only)  
-**Related:** [bootstrap-checklist.md](bootstrap-checklist.md), [ADR-0001](../adr/0001-platform-technology-foundation.md)–[ADR-0006](../adr/0006-architecture-enforcement-and-governance.md), module designs under `docs/modules/`  
+**Related:** [bootstrap-checklist.md](bootstrap-checklist.md), [core-platform-execution-plan.md](core-platform-execution-plan.md), [architecture-automation-backlog.md](architecture-automation-backlog.md), [ADR-0001](../adr/0001-platform-technology-foundation.md)–[ADR-0006](../adr/0006-architecture-enforcement-and-governance.md), module designs under `docs/modules/`  
 **Last updated:** 2026-07-14  
 
 Defines the **order and exit criteria** for Core scaffolding. Do not reorder to put Shared commerce ahead of outbox + Identity kernel.

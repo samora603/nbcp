@@ -55,6 +55,9 @@ jobs:
             docs/implementation/bootstrap-checklist.md
             docs/implementation/core-bootstrap-plan.md
             docs/implementation/architecture-automation-backlog.md
+            docs/implementation/core-platform-execution-plan.md
+            docs/implementation/core-kernel-backlog.md
+            docs/implementation/wp-01-outbox-implementation-package.md
             docs/reviews/architecture-readiness-reassessment.md
           )
           for f in "${required[@]}"; do

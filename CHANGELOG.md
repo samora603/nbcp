@@ -38,6 +38,9 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [ADR-0005](docs/adr/0005-financial-truth-and-projection-ownership.md) (Accepted — financial truth and projection ownership; remediates hardening S-03).
 - [ADR-0006](docs/adr/0006-architecture-enforcement-and-governance.md) (Accepted — architecture enforcement and governance; remediates hardening P-01 / P-03 / P-09).
 - Implementation readiness package: [permission catalog](docs/reference/permission-catalog.md), [event-replay](docs/runbooks/event-replay.md) / [tenant](docs/runbooks/tenant-projection-rebuild.md) / [full](docs/runbooks/full-reporting-rebuild.md) rebuild runbooks, [bootstrap checklist](docs/implementation/bootstrap-checklist.md), [core bootstrap plan](docs/implementation/core-bootstrap-plan.md), [architecture automation backlog](docs/implementation/architecture-automation-backlog.md).
+- [Core platform execution plan](docs/implementation/core-platform-execution-plan.md) (detailed Core phases, DoD, Shared exit criteria).
+- [Core kernel backlog](docs/implementation/core-kernel-backlog.md) (WP-01…06 work packages, milestones M1–M6).
+- [WP-01 outbox implementation package](docs/implementation/wp-01-outbox-implementation-package.md) (pre-code Outbox Foundation briefing).
 - [Architecture readiness reassessment](docs/reviews/architecture-readiness-reassessment.md) (8.5/10 — ready for implementation).
 
 ---
