@@ -1,0 +1,22 @@
+# NBCP default code ownership
+# Update GitHub/GitLab usernames or teams when org membership is finalized.
+
+# Default — platform maintainers
+* @noventra/platform-maintainers
+
+# Documentation & architecture decisions
+/docs/ @noventra/platform-architects @noventra/platform-maintainers
+/docs/adr/ @noventra/platform-architects
+
+# Infrastructure
+/infra/ @noventra/platform-devops @noventra/platform-maintainers
+/.github/ @noventra/platform-devops @noventra/platform-maintainers
+
+# Future domain modules (ownership to be refined as modules are introduced)
+/modules/ @noventra/platform-maintainers
+
+# Future shared packages
+/packages/ @noventra/platform-maintainers
+
+# Product compositions
+/products/ @noventra/platform-maintainers

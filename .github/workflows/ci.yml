@@ -1,0 +1,91 @@
+# Foundation CI — Phase 0.1
+# Validates repository foundation invariants without installing dependencies.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  foundation:
+    name: Repository foundation checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify required root files
+        run: |
+          set -euo pipefail
+          required=(
+            README.md
+            CONTRIBUTING.md
+            SECURITY.md
+            CHANGELOG.md
+            CODE_OF_CONDUCT.md
+            LICENSE
+            CODEOWNERS
+            package.json
+            pnpm-workspace.yaml
+            turbo.json
+            .nvmrc
+            .gitignore
+            .editorconfig
+            .gitattributes
+            docs/adr/0001-platform-technology-foundation.md
+            docs/adr/0002-domain-map.md
+            docs/architecture/domain-map.md
+            docs/architecture/module-standard.md
+          )
+          for f in "${required[@]}"; do
+            if [[ ! -f "$f" ]]; then
+              echo "Missing required file: $f"
+              exit 1
+            fi
+            echo "OK $f"
+          done
+
+      - name: Verify required directories
+        run: |
+          set -euo pipefail
+          required=(
+            apps
+            products
+            packages
+            modules
+            tooling
+            infra/docker
+            infra/terraform
+            docs/architecture
+            docs/adr
+            docs/standards
+            docs/runbooks
+            docs/product
+            docs/rfc
+            tests/e2e
+            tests/contract
+            tests/load
+          )
+          for d in "${required[@]}"; do
+            if [[ ! -d "$d" ]]; then
+              echo "Missing required directory: $d"
+              exit 1
+            fi
+            echo "OK $d/"
+          done
+
+      - name: Validate package.json workspace metadata
+        run: |
+          set -euo pipefail
+          node -e "
+            const pkg = require('./package.json');
+            if (pkg.private !== true) throw new Error('package.json must be private');
+            if (!pkg.packageManager || !String(pkg.packageManager).startsWith('pnpm@')) {
+              throw new Error('packageManager must declare pnpm');
+            }
+            if (!pkg.engines || !pkg.engines.node) throw new Error('engines.node required');
+            console.log('package.json OK');
+          "

@@ -1,0 +1,22 @@
+{
+  "name": "@nbcp/domain-module-template",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Canonical NBCP domain module template — copy only; not a runtime business module",
+  "license": "UNLICENSED",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "echo \"Template placeholder — wire tsc when package tooling lands.\"",
+    "test": "echo \"Template placeholder — wire vitest when package tooling lands.\""
+  },
+  "peerDependencies": {
+    "@nestjs/common": "*",
+    "@nestjs/core": "*"
+  },
+  "nbcp": {
+    "template": true,
+    "layer": "TEMPLATE",
+    "standard": "docs/architecture/module-standard.md"
+  }
+}

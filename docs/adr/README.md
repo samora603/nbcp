@@ -1,0 +1,25 @@
+# Architecture Decision Records
+
+Architecture Decision Records (ADRs) capture significant, durable choices for NBCP.
+
+## Index
+
+| ADR | Title | Status |
+| --- | --- | --- |
+| [0001](0001-platform-technology-foundation.md) | Platform technology & modular monolith foundation | Accepted |
+| [0002](0002-domain-map.md) | NBCP domain map (core / shared / product) | Accepted |
+
+## Process
+
+1. Draft significant proposals as an [RFC](../rfc/README.md) when discussion is needed.
+2. Record the decision as an ADR using the [template](TEMPLATE.md).
+3. ADRs are immutable once accepted; supersede with a new ADR instead of silently rewriting history.
+4. Link ADRs from PRs that implement or rely on them.
+
+## Status values
+
+- **Proposed** — under discussion
+- **Accepted** — approved for implementation
+- **Rejected** — considered and declined
+- **Superseded** — replaced by a newer ADR
+- **Deprecated** — no longer recommended

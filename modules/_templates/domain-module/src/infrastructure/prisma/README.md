@@ -1,0 +1,16 @@
+-- Canonical ownership example (not executed).
+-- Tables for a real module MUST be owned solely by that module.
+--
+-- CREATE TABLE example_records (
+--   id              TEXT PRIMARY KEY,
+--   organization_id TEXT NOT NULL,
+--   name            TEXT NOT NULL,
+--   status          TEXT NOT NULL,
+--   created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+--   updated_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+-- );
+--
+-- CREATE INDEX example_records_org_idx ON example_records (organization_id);
+--
+-- Prisma model name would map here; other modules must not mutate these rows.
+

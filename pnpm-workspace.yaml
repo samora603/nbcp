@@ -1,0 +1,6 @@
+packages:
+  - "apps/*"
+  - "products/*"
+  - "packages/*"
+  - "modules/*"
+  - "tooling/*"

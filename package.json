@@ -1,0 +1,20 @@
+{
+  "name": "nbcp",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Noventra Business Core Platform — reusable enterprise business platform monorepo",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "dev": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "build": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "lint": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "typecheck": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "test": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "format": "echo \"Workspace foundation only — format tooling not yet configured.\""
+  }
+}

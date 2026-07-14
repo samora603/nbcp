@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/noventra/nbcp/blob/main/SECURITY.md
+    about: Report security issues privately via the process in SECURITY.md — do not open a public issue.
+  - name: Architecture RFC
+    url: https://github.com/noventra/nbcp/blob/main/docs/rfc/README.md
+    about: For significant design proposals, start with an RFC rather than a casual issue.
