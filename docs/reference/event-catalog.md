@@ -1,14 +1,14 @@
 # Event Catalog
 
 **Status:** Authoritative inventory (canonical)  
-**ADR alignment:** [ADR-0003](../adr/0003-event-contracts-and-outbox.md), [ADR-0004](../adr/0004-event-retention-replay-rebuild.md), [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md), [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md)  
+**ADR alignment:** [ADR-0003](../adr/0003-event-contracts-and-outbox.md), [ADR-0004](../adr/0004-event-retention-replay-rebuild.md), [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md), [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md), [ADR-0007](../adr/0007-orders-inventory-reservation-and-issue-timing.md)  
 **Related:** [event-contracts.md](../architecture/event-contracts.md), [eventing.md](../architecture/eventing.md), [ADR-0001](../adr/0001-platform-technology-foundation.md), [ADR-0002](../adr/0002-domain-map.md)  
 **Last updated:** 2026-07-14  
 **Remediates:** Architecture hardening [S-02](../reviews/architecture-hardening-review.md) / [P-02](../reviews/architecture-hardening-review.md)
 
 This document is the **canonical inventory** of NBCP platform domain events: names, owners, consumers, classification, replay eligibility, and versioning status.
 
-All rows are **Planned** until the owning module is implemented and the event is emitted in production code, except where Status is marked **Published** (Identity / WP-02; Tenancy / WP-03 except `tenancy.invitation.expired` worker; RBAC / WP-04; Audit / WP-05). Module design docs remain the narrative source for payloads; **this catalog is authoritative for type ↔ ownership ↔ class ↔ replay**.
+All rows are **Planned** until the owning module is implemented and the event is emitted in production code, except where Status is marked **Published** (Identity / WP-02; Tenancy / WP-03 except `tenancy.invitation.expired` worker; RBAC / WP-04; Audit / WP-05; Parties / S1). Module design docs remain the narrative source for payloads; **this catalog is authoritative for type ↔ ownership ↔ class ↔ replay**.
 
 ---
 
@@ -178,49 +178,51 @@ Populate-from: module `docs/modules/*/design.md` Event sections. Modules not yet
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `parties.party.created` | Parties | BUSINESS | Audit, search, CRM UX | Yes | 1 | Planned |
-| `parties.party.updated` | Parties | BUSINESS | Search, cache | Yes | 1 | Planned |
-| `parties.party.activated` | Parties | BUSINESS | Orders validation | Yes | 1 | Planned |
-| `parties.party.inactivated` | Parties | BUSINESS | Orders validation | Yes | 1 | Planned |
-| `parties.party.deleted` | Parties | BUSINESS | Soft refs; block new orders | Yes | 1 | Planned |
-| `parties.party.merged` | Parties | BUSINESS | Orders remaps, search, Audit | Conditional | 1 | Planned |
-| `parties.classification.granted` | Parties | BUSINESS | Audit | Yes | 1 | Planned |
-| `parties.classification.revoked` | Parties | BUSINESS | Audit | Yes | 1 | Planned |
-| `parties.channel.added` | Parties | BUSINESS | Notifications prefs | Yes | 1 | Planned |
-| `parties.channel.removed` | Parties | BUSINESS | Notifications prefs | Yes | 1 | Planned |
-| `parties.relationship.created` | Parties | BUSINESS | CRM graph | Yes | 1 | Planned |
-| `parties.relationship.removed` | Parties | BUSINESS | CRM graph | Yes | 1 | Planned |
-| `parties.principal_linked` | Parties | SECURITY | Employee portal, Audit | Yes | 1 | Planned |
-| `parties.principal_unlinked` | Parties | SECURITY | Audit | Yes | 1 | Planned |
+| `parties.party.created` | Parties | BUSINESS | Audit, search, CRM UX | Yes | 1 | Published |
+| `parties.party.updated` | Parties | BUSINESS | Search, cache | Yes | 1 | Published |
+| `parties.party.activated` | Parties | BUSINESS | Orders validation | Yes | 1 | Published |
+| `parties.party.inactivated` | Parties | BUSINESS | Orders validation | Yes | 1 | Published |
+| `parties.party.deleted` | Parties | BUSINESS | Soft refs; block new orders | Yes | 1 | Published |
+| `parties.party.merged` | Parties | BUSINESS | Orders remaps, search, Audit | Conditional | 1 | Published |
+| `parties.classification.granted` | Parties | BUSINESS | Audit | Yes | 1 | Published |
+| `parties.classification.revoked` | Parties | BUSINESS | Audit | Yes | 1 | Published |
+| `parties.channel.added` | Parties | BUSINESS | Notifications prefs | Yes | 1 | Published |
+| `parties.channel.removed` | Parties | BUSINESS | Notifications prefs | Yes | 1 | Published |
+| `parties.relationship.created` | Parties | BUSINESS | CRM graph | Yes | 1 | Published |
+| `parties.relationship.removed` | Parties | BUSINESS | CRM graph | Yes | 1 | Published |
+| `parties.principal.linked` | Parties | SECURITY | Employee portal, Audit | Yes | 1 | Published |
+| `parties.principal.unlinked` | Parties | SECURITY | Audit | Yes | 1 | Published |
 
 ### Catalog
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `catalog.item.created` | Catalog | BUSINESS | Audit, search, Inventory seed | Yes | 1 | Planned |
-| `catalog.item.updated` | Catalog | BUSINESS | Cache, channel sync | Yes | 1 | Planned |
-| `catalog.item.activated` | Catalog | BUSINESS | Orders assert | Yes | 1 | Planned |
-| `catalog.item.inactivated` | Catalog | BUSINESS | Orders assert | Yes | 1 | Planned |
-| `catalog.item.deleted` | Catalog | BUSINESS | Block new lines | Yes | 1 | Planned |
-| `catalog.variant.created` | Catalog | BUSINESS | Inventory, POS | Yes | 1 | Planned |
-| `catalog.variant.updated` | Catalog | BUSINESS | Inventory, POS | Yes | 1 | Planned |
-| `catalog.price.changed` | Catalog | BUSINESS | Channels, Audit, Reporting | Yes | 1 | Planned |
+| `catalog.item.created` | Catalog | BUSINESS | Audit, search, Inventory seed | Yes | 1 | Published |
+| `catalog.item.updated` | Catalog | BUSINESS | Cache, channel sync | Yes | 1 | Published |
+| `catalog.item.activated` | Catalog | BUSINESS | Orders assert | Yes | 1 | Published |
+| `catalog.item.inactivated` | Catalog | BUSINESS | Orders assert | Yes | 1 | Published |
+| `catalog.item.deleted` | Catalog | BUSINESS | Block new lines | Yes | 1 | Published |
+| `catalog.variant.created` | Catalog | BUSINESS | Inventory, POS | Yes | 1 | Published |
+| `catalog.variant.updated` | Catalog | BUSINESS | Inventory, POS | Yes | 1 | Published |
+| `catalog.price.changed` | Catalog | BUSINESS | Channels, Audit, Reporting | Yes | 1 | Published |
 
 ### Orders
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `orders.order.created` | Orders | BUSINESS | Audit, product correlation | Yes | 1 | Planned |
-| `orders.order.updated` | Orders | BUSINESS | Product UX caches | Yes | 1 | Planned |
-| `orders.order.committed` | Orders | BUSINESS | Inventory, Payments orchestration, Product modules, Audit, Reporting | Yes | 1 | Planned |
-| `orders.order.partially_fulfilled` | Orders | BUSINESS | Product ops | Yes | 1 | Planned |
-| `orders.order.fulfilled` | Orders | BUSINESS | Ledger projections (policy), Audit, Reporting | Yes | 1 | Planned |
-| `orders.order.cancelled` | Orders | BUSINESS | Inventory release, Payments void, Audit, Reporting | Yes | 1 | Planned |
-| `orders.line.added` | Orders | BUSINESS | Product (draft) | Yes | 1 | Planned |
-| `orders.line.removed` | Orders | BUSINESS | Product (draft) | Yes | 1 | Planned |
-| `orders.pricing.finalized` | Orders | BUSINESS | Reporting | Yes | 1 | Planned |
+| `orders.order.created` | Orders | BUSINESS | Audit, product correlation | Yes | 1 | Published |
+| `orders.order.updated` | Orders | BUSINESS | Product UX caches | Yes | 1 | Published |
+| `orders.order.committed` | Orders | BUSINESS | Inventory, Payments orchestration, Product modules, Audit, Reporting | Yes | 1 | Published |
+| `orders.order.partially_fulfilled` | Orders | BUSINESS | Product ops | Yes | 1 | Published |
+| `orders.order.fulfilled` | Orders | BUSINESS | Ledger projections (policy), Audit, Reporting | Yes | 1 | Published |
+| `orders.order.cancelled` | Orders | BUSINESS | Inventory release, Payments void, Audit, Reporting | Yes | 1 | Published |
+| `orders.line.added` | Orders | BUSINESS | Product (draft) | Yes | 1 | Published |
+| `orders.line.removed` | Orders | BUSINESS | Product (draft) | Yes | 1 | Published |
+| `orders.pricing.finalized` | Orders | BUSINESS | Reporting | Yes | 1 | Published |
 
 > **Note:** `orders.order.committed` is classified **BUSINESS** (commercial SoR fact). Retention for rebuild follows OPERATIONAL minima; when finance policy treats commit as revenue-critical evidence, operators apply **FINANCIAL** cold retention to that type via catalog amendment — without reclassifying Ledger posts.
+>
+> **Inventory timing ([ADR-0007](../adr/0007-orders-inventory-reservation-and-issue-timing.md)):** `orders.order.committed` → Inventory **reserves** stockable lines; `partially_fulfilled` / `fulfilled` → **issue** fulfilled qty; `cancelled` → **release** unissued reservations. Inventory owns `inventory.stock.reserved` / `reservation.released` / `stock.issued`.
 
 ### Inventory
 
@@ -427,3 +429,4 @@ Suggested reviewers: owning module CODEOWNERS + platform architect for cross-mod
 | 1.2 | 2026-07-14 | Tenancy events Status → Published (WP-03 / `@nbcp/tenancy`; expired worker still Planned) |
 | 1.3 | 2026-07-14 | RBAC events Status → Published (WP-04 / `@nbcp/rbac`) |
 | 1.4 | 2026-07-14 | Audit events Status → Published (WP-05 / `@nbcp/audit`) |
+| 1.5 | 2026-07-14 | Parties events Status → Published (S1 / `@nbcp/parties`) |

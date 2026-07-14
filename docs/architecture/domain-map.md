@@ -220,10 +220,10 @@ Repository home: `modules/<name>` (future). Ownership: Platform Maintainers with
 
 | Field | Definition |
 | --- | --- |
-| **Responsibility** | Stock items (linked to catalog where stockable), quantities per location, receipts, issues, adjustments, transfers. |
-| **Public APIs** | Adjust stock; transfer; reserve quantity (soft); query on-hand. |
-| **Depends on** | `tenancy`, `catalog`, `rbac`, `audit`. |
-| **Ownership rules** | Not rooms, tables, or practitioner capacity—those are scheduling/product. |
+| **Responsibility** | Stock items (linked to catalog where stockable), quantities per location, receipts, issues, adjustments, transfers, soft reservations against orders. |
+| **Public APIs** | Adjust stock; transfer; reserve quantity (soft); issue against reservation; query on-hand / available. |
+| **Depends on** | `tenancy`, `catalog`, `rbac`, `audit`; consumes `orders` events ([ADR-0007](../adr/0007-orders-inventory-reservation-and-issue-timing.md)). |
+| **Ownership rules** | Not rooms, tables, or practitioner capacity—those are scheduling/product. **Reserve on order commit; issue on fulfill** (ADR-0007). |
 | **Reuse** | Restaurant (ingredients), retail, healthcare supplies, education materials, professional parts as needed. |
 
 ### 5.7 `scheduling`

@@ -63,12 +63,15 @@ export function checkPermissionGovernance(repoRoot: string): CheckResult {
     });
   }
 
-  // Progressive: permission const files in Core must ⊆ catalog
+  // Progressive: permission const files in Core/Shared must ⊆ catalog
   for (const rel of [
     "modules/identity/src/application/permissions.ts",
     "modules/tenancy/src/application/permissions.ts",
     "modules/rbac/src/application/permissions.ts",
     "modules/audit/src/application/permissions.ts",
+    "modules/parties/src/application/permissions.ts",
+    "modules/catalog/src/application/permissions.ts",
+    "modules/orders/src/application/permissions.ts",
   ]) {
     const file = join(repoRoot, rel);
     if (!existsSync(file)) continue;

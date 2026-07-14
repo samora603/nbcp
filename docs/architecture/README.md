@@ -25,6 +25,7 @@ This section describes how NBCP is structured and why. Authoritative decisions l
 | [financial-projection-ownership.md](financial-projection-ownership.md) | Stub → ADR-0005 |
 | [../adr/0006-architecture-enforcement-and-governance.md](../adr/0006-architecture-enforcement-and-governance.md) | Boundaries, outbox, CI governance ([Accepted](../adr/0006-architecture-enforcement-and-governance.md)) |
 | [architecture-enforcement.md](architecture-enforcement.md) | Stub → ADR-0006 |
+| [../adr/0007-orders-inventory-reservation-and-issue-timing.md](../adr/0007-orders-inventory-reservation-and-issue-timing.md) | Orders ↔ Inventory: reserve on commit, issue on fulfill ([Accepted](../adr/0007-orders-inventory-reservation-and-issue-timing.md)) |
 | [../implementation/](../implementation/README.md) | Bootstrap checklist, core plan, automation backlog |
 | [../reference/permission-catalog.md](../reference/permission-catalog.md) | Canonical RBAC permission inventory |
 | [api-strategy.md](api-strategy.md) | Public and internal API strategy |

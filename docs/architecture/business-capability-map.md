@@ -105,6 +105,8 @@ Table number, kitchen station, room number, POS tender UI, diagnosis codes, grad
 
 Stock quantities and movements for **stockable** catalog items per tenancy location: on-hand, receipts, issues, adjustments, transfers, soft reserves.
 
+**Orders interaction ([ADR-0007](../adr/0007-orders-inventory-reservation-and-issue-timing.md)):** reserve on order commit; issue on fulfill; release on cancel; ignore non-stockable/service lines.
+
 ### Product consumption
 
 | Product | Consumption |

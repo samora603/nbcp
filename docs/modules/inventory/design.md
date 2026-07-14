@@ -9,7 +9,7 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
-**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Catalog](../catalog/design.md) · [Parties](../parties/design.md) · [Orders](../orders/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md)
+**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Catalog](../catalog/design.md) · [Parties](../parties/design.md) · [Orders](../orders/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md) · **[ADR-0007 — Orders ↔ Inventory timing](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)**
 
 ---
 
@@ -244,10 +244,14 @@ orders / products → inventory  (via events or application orchestration)
 | Catalog/Parties → Inventory | Forbidden |
 | Inventory → Orders | Use app composer or Inventory **handler** on `orders.order.committed` (Inventory depends on Orders **facade/events** — allowed one-way). Products may also call `reserve`/`issue` explicitly |
 
-**Orders integration (recommended):**
+**Orders integration (normative — [ADR-0007](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)):**
 
-- On `orders.order.committed` → reserve or issue stockable lines (policy per tenant/pack).  
-- On `orders.order.cancelled` → release reservations / reverse issues per policy.  
+- On `orders.order.committed` → **reserve** stockable lines (soft hold; on-hand unchanged).  
+- On `orders.order.partially_fulfilled` / fulfill qty / `orders.order.fulfilled` → **issue** against reservation (decrement on-hand).  
+- On `orders.order.cancelled` → **release** unissued reservations; already-issued qty corrected only via compensating movements.  
+- Non-stockable / service lines → no Inventory effect.  
+- Hard availability gate before commit (when required) lives in the **host/product composer**, not Orders → Inventory imports.
+
 Inventory may depend on Orders **event contracts** (DAG: inventory → orders). Orders must **not** depend on Inventory.
 
 ---
@@ -312,7 +316,7 @@ Product tables store `stockMovementId` or externalRef keys — **never** alter I
 
 1. Catalog stockable SKU; `ensureStockItem` at store location.  
 2. Receipt from supplier (`supplierPartyId`).  
-3. Order commit → reserve/issue.  
+3. Order commit → **reserve**; fulfill → **issue** ([ADR-0007](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)).  
 4. Transfer store A → B for replenishment.
 
 ### Restaurant ingredient
@@ -369,5 +373,5 @@ Same stock movements; product correlates via `externalRef` without room/patient 
 - [business-capability-map.md](../../architecture/business-capability-map.md) §5  
 - [domain-map.md](../../architecture/domain-map.md) §5.6  
 - [catalog/design.md](../catalog/design.md) · [parties/design.md](../parties/design.md) · [orders/design.md](../orders/design.md)  
-- [ADR-0001](../../adr/0001-platform-technology-foundation.md) / [0002](../../adr/0002-domain-map.md) / [0003](../../adr/0003-event-contracts-and-outbox.md)  
+- [ADR-0001](../../adr/0001-platform-technology-foundation.md) / [0002](../../adr/0002-domain-map.md) / [0003](../../adr/0003-event-contracts-and-outbox.md) / [**0007**](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)  
 - [module-standard.md](../../architecture/module-standard.md) · [audit/design.md](../audit/design.md)

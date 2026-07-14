@@ -2,11 +2,11 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `catalog` (`modules/catalog` — future implementation) |
+| **Module** | `catalog` (`modules/catalog` — `@nbcp/catalog`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
+| **Status** | Implemented (S2) — domain facade + in-memory kernel; Nest/Prisma host wiring later |
 | **Last updated** | 2026-07-14 |
 
 **Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Parties design](../parties/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md)

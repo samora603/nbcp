@@ -2,14 +2,14 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `orders` (`modules/orders` — future implementation) |
+| **Module** | `orders` (`modules/orders` — `@nbcp/orders`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
+| **Status** | Implemented (S3) — domain facade + in-memory kernel; Nest/Prisma host wiring later |
 | **Last updated** | 2026-07-14 |
 
-**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Parties](../parties/design.md) · [Catalog](../catalog/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md)
+**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Parties](../parties/design.md) · [Catalog](../catalog/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md) · **[ADR-0007 — Orders ↔ Inventory timing](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)**
 
 ---
 
@@ -178,10 +178,10 @@ Producer-owned facade exports + transactional outbox ([ADR-0003](../../adr/0003-
 | --- | --- | --- |
 | `orders.order.created` | Draft created | Audit, product correlation |
 | `orders.order.updated` | Draft changed | Product UX caches |
-| `orders.order.committed` | Commit | **Inventory**, Payments orchestration, kitchen/hotel/clinic **products**, Audit |
-| `orders.order.partially_fulfilled` | Partial fulfill | Product ops |
-| `orders.order.fulfilled` | Complete | Ledger projections, Audit |
-| `orders.order.cancelled` | Cancel | Inventory release, Payments void flows, Audit |
+| `orders.order.committed` | Commit | **Inventory reserve** ([ADR-0007](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)), Payments orchestration, kitchen/hotel/clinic **products**, Audit |
+| `orders.order.partially_fulfilled` | Partial fulfill | **Inventory issue** (fulfilled qty), Product ops |
+| `orders.order.fulfilled` | Complete | **Inventory issue** (residual reserved), Ledger projections (policy), Audit |
+| `orders.order.cancelled` | Cancel | **Inventory release** (unissued), Payments void flows, Audit |
 | `orders.line.added` / `removed` | Draft only (optional granularity) | Product |
 | `orders.pricing.finalized` | On commit | Reporting |
 
@@ -288,7 +288,7 @@ Align Audit `action` with event `type` ([audit design](../audit/design.md), [eve
 - **Producer:** `orders`  
 - **Export:** facade event types + envelope  
 - **Idempotency:** `eventId`  
-- **Key consumer contracts:** Inventory reacts to `committed`/`cancelled`; Payments may create intents against `orderId`; products wire workflows  
+- **Key consumer contracts:** Inventory reacts per [ADR-0007](../../adr/0007-orders-inventory-reservation-and-issue-timing.md) (`committed` → reserve, fulfill → issue, `cancelled` → release); Payments may create intents against `orderId`; products wire workflows  
 
 ---
 
@@ -335,8 +335,9 @@ Align Audit `action` with event `type` ([audit design](../audit/design.md), [eve
 ### Retail POS
 
 1. Draft Order at location; add SKUs.  
-2. Commit + pay; Inventory reduces on `committed`.  
-3. Return: `createReturnOrder` related to original.
+2. Commit → Inventory **reserves** stockable lines ([ADR-0007](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)).  
+3. Pay (Payments) as product requires; composer may `fulfillOrder` immediately after commit/pay so Inventory **issues** in the same user action (issue-on-commit is **not** the platform default).  
+4. Return: `createReturnOrder` related to original.
 
 ### Healthcare / Education / Professional Services
 
@@ -384,5 +385,5 @@ Same Order lifecycle; product entities hold clinical/academic/engagement state a
 - [business-capability-map.md](../../architecture/business-capability-map.md) §4  
 - [domain-map.md](../../architecture/domain-map.md) §5.3  
 - [parties/design.md](../parties/design.md) · [catalog/design.md](../catalog/design.md)  
-- [ADR-0001](../../adr/0001-platform-technology-foundation.md) / [0002](../../adr/0002-domain-map.md) / [0003](../../adr/0003-event-contracts-and-outbox.md)  
+- [ADR-0001](../../adr/0001-platform-technology-foundation.md) / [0002](../../adr/0002-domain-map.md) / [0003](../../adr/0003-event-contracts-and-outbox.md) / [**0007**](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)  
 - [module-standard.md](../../architecture/module-standard.md)

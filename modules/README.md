@@ -26,6 +26,9 @@ Domain modules (Core Platform, Shared Business, and Product-Specific capabilitie
 | [`tenancy`](tenancy/) (`@nbcp/tenancy`) | Core | WP-03 / M3 implemented (orgs, memberships, invitations; Identity facade only) |
 | [`rbac`](rbac/) (`@nbcp/rbac`) | Core | WP-04 / M4 implemented (catalog permissions, roles, authorize, org admin bootstrap) |
 | [`audit`](audit/) (`@nbcp/audit`) | Core | WP-05 / M5 implemented (append-only trail; SECURITY event projection; query) |
+| [`parties`](parties/) (`@nbcp/parties`) | Shared | S1 implemented (party master data, classifications, contacts, lifecycle) |
+| [`catalog`](catalog/) (`@nbcp/catalog`) | Shared | S2 implemented (offerings, variants, list prices, lifecycle) |
+| [`orders`](orders/) (`@nbcp/orders`) | Shared | S3 implemented (commercial commitments, lines, fulfill/cancel; ADR-0007 intents) |
 
 ## Template
 

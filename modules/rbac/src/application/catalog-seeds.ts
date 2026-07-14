@@ -31,6 +31,29 @@ export const CORE_PERMISSION_SEEDS: ReadonlyArray<{
   { key: "rbac.assignment.read", description: "View assignments" },
   { key: "audit.read", description: "Query audit records" },
   { key: "audit.retention.manage", description: "Trigger archive/purge workflows" },
+  { key: "parties.party.read", description: "View parties" },
+  { key: "parties.party.manage", description: "Create/update/lifecycle parties" },
+  {
+    key: "parties.classification.manage",
+    description: "Grant/revoke classification role keys",
+  },
+  { key: "parties.principal.link", description: "Link/unlink Identity principal" },
+  {
+    key: "parties.relationship.manage",
+    description: "Create/remove relationships",
+  },
+  { key: "parties.party.merge", description: "Merge parties (sensitive)" },
+  { key: "catalog.item.read", description: "View catalog items/variants/prices" },
+  {
+    key: "catalog.item.manage",
+    description: "Create/update/lifecycle items, variants, prices",
+  },
+  { key: "catalog.tax.manage", description: "Manage tax categories" },
+  { key: "orders.order.read", description: "View orders" },
+  { key: "orders.order.manage", description: "Create/edit draft orders" },
+  { key: "orders.order.commit", description: "Commit drafts (commercial commitment)" },
+  { key: "orders.order.fulfill", description: "Mark fulfill / partial fulfill" },
+  { key: "orders.order.cancel", description: "Cancel orders" },
 ];
 
 /** Permissions bound to organization.administrator system role. */
@@ -49,4 +72,18 @@ export const ORGANIZATION_ADMINISTRATOR_PERMISSIONS: readonly string[] = [
   "rbac.assignment.manage",
   "rbac.assignment.read",
   "audit.read",
+  "parties.party.read",
+  "parties.party.manage",
+  "parties.classification.manage",
+  "parties.principal.link",
+  "parties.relationship.manage",
+  "parties.party.merge",
+  "catalog.item.read",
+  "catalog.item.manage",
+  "catalog.tax.manage",
+  "orders.order.read",
+  "orders.order.manage",
+  "orders.order.commit",
+  "orders.order.fulfill",
+  "orders.order.cancel",
 ];

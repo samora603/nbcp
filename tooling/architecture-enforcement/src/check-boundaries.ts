@@ -2,6 +2,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
 import {
   CORE_PACKAGE_POLICY,
+  SHARED_PACKAGE_POLICY,
   FORBIDDEN_EDGES,
   CORE_MODULE_NAMES,
   SHARED_MODULE_NAMES,
@@ -44,7 +45,11 @@ function layerOfModule(shortName: string): "CORE" | "SHARED" | "PRODUCT" | "UNKN
 export function checkPackageBoundaries(repoRoot: string): CheckResult {
   const violations: Violation[] = [];
 
-  for (const policy of [...CORE_PACKAGE_POLICY, ...INFRA_PACKAGES]) {
+  for (const policy of [
+    ...CORE_PACKAGE_POLICY,
+    ...SHARED_PACKAGE_POLICY,
+    ...INFRA_PACKAGES,
+  ]) {
     const dir = join(repoRoot, policy.path);
     const pkg = readPackageJson(dir);
     if (!pkg) {
@@ -88,22 +93,25 @@ export function checkPackageBoundaries(repoRoot: string): CheckResult {
         });
       }
 
-      // Core policy allow-list for known packages
-      const corePolicy = CORE_PACKAGE_POLICY.find((p) => p.name === pkg.name);
-      if (corePolicy) {
+      // Policy allow-list for known packages
+      const knownPolicy = [...CORE_PACKAGE_POLICY, ...SHARED_PACKAGE_POLICY].find(
+        (p) => p.name === pkg.name,
+      );
+      if (knownPolicy) {
         const targetIsModule =
           CORE_MODULE_NAMES.has(short) || SHARED_MODULE_NAMES.has(short);
-        if (targetIsModule && !corePolicy.allowedModuleDeps.includes(dep)) {
+        if (targetIsModule && !knownPolicy.allowedModuleDeps.includes(dep)) {
           violations.push({
             rule: "D-01",
             severity: "error",
             path: policy.path,
-            message: `${pkg.name} may not depend on ${dep} (allowed: ${corePolicy.allowedModuleDeps.join(", ") || "none"})`,
+            message: `${pkg.name} may not depend on ${dep} (allowed: ${knownPolicy.allowedModuleDeps.join(", ") || "none"})`,
           });
         }
       }
 
       // Core must not depend on Shared/Product
+      const corePolicy = CORE_PACKAGE_POLICY.find((p) => p.name === pkg.name);
       if (corePolicy && (SHARED_MODULE_NAMES.has(short) || layerOfModule(short) === "PRODUCT")) {
         if (!CORE_MODULE_NAMES.has(short)) {
           violations.push({
@@ -111,6 +119,33 @@ export function checkPackageBoundaries(repoRoot: string): CheckResult {
             severity: "error",
             path: policy.path,
             message: `Core package ${pkg.name} must not depend on Shared/Product ${dep}`,
+          });
+        }
+      }
+
+      // Shared must not depend on Product or forbidden downstream commerce modules
+      const sharedPolicy = SHARED_PACKAGE_POLICY.find((p) => p.name === pkg.name);
+      if (sharedPolicy) {
+        const forbiddenDownstream = [
+          "payments",
+          "ledger",
+          "inventory",
+          "reporting",
+        ];
+        // Upstream shared packages must not depend on Orders (DAG: Inventory → Orders).
+        if (pkg.name !== "@nbcp/orders") {
+          forbiddenDownstream.push("orders");
+        }
+        // Parties must not take a Catalog edge (DAG: Catalog → Parties).
+        if (pkg.name === "@nbcp/parties") {
+          forbiddenDownstream.push("catalog");
+        }
+        if (forbiddenDownstream.includes(short)) {
+          violations.push({
+            rule: "B-01",
+            severity: "error",
+            path: policy.path,
+            message: `Shared package ${pkg.name} must not depend on ${dep}`,
           });
         }
       }
@@ -181,7 +216,7 @@ export function checkPackageBoundaries(repoRoot: string): CheckResult {
 export function checkImportBoundaries(repoRoot: string): CheckResult {
   const violations: Violation[] = [];
 
-  for (const policy of CORE_PACKAGE_POLICY) {
+  for (const policy of [...CORE_PACKAGE_POLICY, ...SHARED_PACKAGE_POLICY]) {
     const srcDir = join(repoRoot, policy.path, "src");
     for (const file of listTsFiles(srcDir)) {
       const text = readFileSync(file, "utf8");
@@ -213,8 +248,8 @@ export function checkImportBoundaries(repoRoot: string): CheckResult {
 
         // Relative deep dive into another module
         if (
-          /modules\/(identity|tenancy|rbac|audit)\//.test(spec) ||
-          /\/(identity|tenancy|rbac|audit)\/src\//.test(spec)
+          /modules\/(identity|tenancy|rbac|audit|parties|catalog|orders)\//.test(spec) ||
+          /\/(identity|tenancy|rbac|audit|parties|catalog|orders)\/src\//.test(spec)
         ) {
           violations.push({
             rule: "B-05",

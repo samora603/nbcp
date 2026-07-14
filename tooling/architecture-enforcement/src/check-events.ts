@@ -5,7 +5,7 @@ import {
   validateCatalogSchema,
   ownerMatchesType,
 } from "./parse-event-catalog.js";
-import { CORE_PACKAGE_POLICY, EVENT_TYPE_PATTERN } from "./policy.js";
+import { CORE_PACKAGE_POLICY, SHARED_PACKAGE_POLICY, EVENT_TYPE_PATTERN } from "./policy.js";
 import type { CheckResult, Violation } from "./types.js";
 
 /** Extract values from `*EventTypes = { ... } as const` blocks only. */
@@ -34,7 +34,7 @@ export function checkEventGovernance(repoRoot: string): CheckResult {
   const byType = new Map(catalog.map((e) => [e.type, e]));
   const violations: Violation[] = [...validateCatalogSchema(catalog)];
 
-  for (const policy of CORE_PACKAGE_POLICY) {
+  for (const policy of [...CORE_PACKAGE_POLICY, ...SHARED_PACKAGE_POLICY]) {
     const eventsFile = join(repoRoot, policy.path, "src/domain/events.ts");
     try {
       const text = readFileSync(eventsFile, "utf8");

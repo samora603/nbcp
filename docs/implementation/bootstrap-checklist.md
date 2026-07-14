@@ -48,9 +48,9 @@ Legend: `[ ]` pending · `[x]` complete (mark in implementation PRs / project tr
 
 | # | Gate | Completion criteria |
 | --- | --- | --- |
-| S1 | Parties | Facade + events in catalog; permissions seeded |
-| S2 | Catalog | Items/prices; events catalogued |
-| S3 | Orders | Commit/cancel path; outbox on material events |
+| S1 | Parties | Facade + events in catalog; permissions seeded | [x] `@nbcp/parties` |
+| S2 | Catalog | Items/prices; events catalogued | [x] `@nbcp/catalog` |
+| S3 | Orders | Commit/cancel path; outbox on material events | [x] `@nbcp/orders` |
 | S4 | Payments | Capture/refund SoR; **no** ledger table writes |
 | S5 | Ledger | Journals append-only; projector on capture per ADR-0005; idempotent `externalRef` |
 | S6 | Inventory | Movements; fulfillment timing policy documented before auto-handlers |

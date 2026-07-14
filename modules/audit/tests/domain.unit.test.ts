@@ -29,7 +29,8 @@ describe("audit domain unit", () => {
     expect(classifyEnvelopeType("payments.capture.succeeded")).toBe(
       "FINANCIAL",
     );
-    expect(classifyEnvelopeType("orders.order.committed")).toBe("IGNORE");
+    expect(classifyEnvelopeType("orders.order.committed")).toBe("BUSINESS");
+    expect(classifyEnvelopeType("unknown.module.event")).toBe("IGNORE");
   });
 
   it("projects SECURITY envelopes; FINANCIAL metadata-only", () => {

@@ -43,6 +43,46 @@ export const CORE_PACKAGE_POLICY: readonly PackagePolicy[] = [
   },
 ];
 
+/** Shared packages with legal Core/Audit deps (ADR-0002). */
+export const SHARED_PACKAGE_POLICY: readonly PackagePolicy[] = [
+  {
+    path: "modules/parties",
+    name: "@nbcp/parties",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+    ],
+  },
+  {
+    path: "modules/catalog",
+    name: "@nbcp/catalog",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+      "@nbcp/parties",
+    ],
+  },
+  {
+    path: "modules/orders",
+    name: "@nbcp/orders",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+      "@nbcp/parties",
+      "@nbcp/catalog",
+    ],
+  },
+];
+
 export const INFRA_PACKAGES: readonly PackagePolicy[] = [
   {
     path: "packages/outbox",
@@ -116,6 +156,7 @@ export const REQUIRED_ADRS = [
   "docs/adr/0004-event-retention-replay-rebuild.md",
   "docs/adr/0005-financial-truth-and-projection-ownership.md",
   "docs/adr/0006-architecture-enforcement-and-governance.md",
+  "docs/adr/0007-orders-inventory-reservation-and-issue-timing.md",
 ] as const;
 
 export const REQUIRED_ARCHITECTURE_DOCS = [

@@ -12,6 +12,7 @@ Architecture Decision Records (ADRs) capture significant, durable choices for NB
 | [0004](0004-event-retention-replay-rebuild.md) | Event retention, replay, and projection rebuild | Accepted |
 | [0005](0005-financial-truth-and-projection-ownership.md) | Financial truth and projection ownership | Accepted |
 | [0006](0006-architecture-enforcement-and-governance.md) | Architecture enforcement and governance | Accepted |
+| [0007](0007-orders-inventory-reservation-and-issue-timing.md) | Orders ↔ Inventory reservation and issue timing | Accepted |
 
 ## Process
 

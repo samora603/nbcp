@@ -2,11 +2,11 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `parties` (`modules/parties` — future implementation) |
+| **Module** | `parties` (`modules/parties` — `@nbcp/parties`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
+| **Status** | S1 implemented (`@nbcp/parties`; Nest host deferred) |
 | **Last updated** | 2026-07-14 |
 
 **Normative companions:** [Tenant access model](../../architecture/tenant-access-model.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Domain map §5.1](../../architecture/domain-map.md)
@@ -202,7 +202,7 @@ Publish via module facade + transactional outbox for security/master-data signif
 | `parties.classification.revoked` | partyId, roleKey | Audit |
 | `parties.channel.added` / `removed` | partyId, channelType | Notifications prefs |
 | `parties.relationship.created` / `removed` | relationshipId, from, to, type | CRM graph |
-| `parties.principal_linked` / `unlinked` | partyId, principalId | Employee portal |
+| `parties.principal.linked` / `parties.principal.unlinked` | partyId, principalId | Employee portal |
 
 **Facade exports:** event types + envelope helpers only; no Prisma models.
 
@@ -298,7 +298,7 @@ Parties owns all `parties_*` tables. Other modules store **only** `party_id` opa
 | --- | --- |
 | Create/update/delete party | `parties.party.*` → Audit projection (outbox) |
 | Grant/revoke customer (or any classification) | `parties.classification.*` |
-| Link/unlink principal | `parties.principal_linked` — security-sensitive |
+| Link/unlink principal | `parties.principal.linked` — security-sensitive |
 | Merge parties | Mandatory audit with both ids |
 
 Metadata: ids and role keys only — no secrets. Prefer Audit consumer checklist entries for classification and principal link events ([event-contracts.md](../../architecture/event-contracts.md)).

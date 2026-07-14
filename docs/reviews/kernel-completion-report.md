@@ -6,7 +6,7 @@
 | **Date** | 2026-07-14 |
 | **Scope** | Core Kernel — WP-01…WP-06 / milestones M1…M6 |
 | **Authority** | [core-kernel-backlog.md](../implementation/core-kernel-backlog.md) · [core-platform-execution-plan.md](../implementation/core-platform-execution-plan.md) · [bootstrap-checklist.md](../implementation/bootstrap-checklist.md) |
-| **Policy** | ADR-0001…0006 · [event catalog](../reference/event-catalog.md) · [permission catalog](../reference/permission-catalog.md) |
+| **Policy** | ADR-0001…0007 · [event catalog](../reference/event-catalog.md) · [permission catalog](../reference/permission-catalog.md) |
 | **Prior readiness** | [architecture-readiness-reassessment.md](architecture-readiness-reassessment.md) (8.5 — ready for Core scaffolding) |
 
 ---

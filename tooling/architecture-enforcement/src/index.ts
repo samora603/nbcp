@@ -25,6 +25,7 @@ export {
 } from "./parse-permission-catalog.js";
 export {
   CORE_PACKAGE_POLICY,
+  SHARED_PACKAGE_POLICY,
   FORBIDDEN_EDGES,
   SECURITY_OUTBOX_MODULES,
 } from "./policy.js";

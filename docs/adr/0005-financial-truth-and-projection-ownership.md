@@ -155,7 +155,7 @@ Ledger **projector gap-fill** (missing journal for an already-processed financia
 | Projection class | Owner | Rebuildable? | Notes |
 | --- | --- | --- | --- |
 | **Payment → journal posts** | **Ledger** (default: Ledger module handlers; apps only for cross-cutting orchestration that still calls Ledger APIs) | Gap-fill only — **not** Reporting-style wipe | Idempotent on `(organizationId, source, externalRef)` |
-| **Order → inventory reserve/issue** | **Inventory** | Idempotent SoR updates / compensating events | Not Reporting |
+| **Order → inventory reserve/issue** | **Inventory** | Idempotent SoR updates / compensating events | Timing normative in [ADR-0007](0007-orders-inventory-reservation-and-issue-timing.md): **reserve on `orders.order.committed`**, **issue on fulfill**, **release on cancel**; Not Reporting |
 | **Order/Payment/Inventory/Ledger events → analytics facts** | **Reporting** | **Yes** — disposable | ADR-0004 Reporting rebuild |
 | **Ledger balances from postings** | **Ledger** | **Yes** — from postings only, never from Reporting | Materialized aid |
 | **Search / UX caches** | Owning product or infrastructure | **Yes** (disposable) | Must not write Shared SoR except via APIs |
@@ -299,6 +299,7 @@ Periodic reconciliation jobs (when implemented) compare keys/amounts between SoR
 
 - [ADR-0004](0004-event-retention-replay-rebuild.md) — retention, replay, rebuild, Ledger protection
 - [ADR-0003](0003-event-contracts-and-outbox.md) — envelope / outbox
+- [ADR-0007](0007-orders-inventory-reservation-and-issue-timing.md) — Orders ↔ Inventory reserve/issue timing
 - [Event catalog](../reference/event-catalog.md)
 - [ledger/design.md](../modules/ledger/design.md)
 - [reporting/design.md](../modules/reporting/design.md)

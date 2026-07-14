@@ -68,10 +68,19 @@ jobs:
             modules/rbac/src/index.ts
             modules/audit/package.json
             modules/audit/src/index.ts
+            modules/parties/package.json
+            modules/parties/src/index.ts
+            modules/catalog/package.json
+            modules/catalog/src/index.ts
+            modules/orders/package.json
+            modules/orders/src/index.ts
             tooling/architecture-enforcement/package.json
             tooling/architecture-enforcement/src/index.ts
             docs/adr/exceptions/README.md
             docs/runbooks/kernel-demo.md
+            docs/implementation/parties-implementation-package.md
+            docs/implementation/catalog-implementation-package.md
+            docs/implementation/orders-implementation-package.md
             docs/reviews/architecture-readiness-reassessment.md
             docs/reviews/kernel-completion-report.md
           )
@@ -338,3 +347,141 @@ jobs:
           pnpm --filter @nbcp/tenancy exec vitest run tests/architecture.test.ts
           pnpm --filter @nbcp/rbac exec vitest run tests/architecture.test.ts
           pnpm --filter @nbcp/audit exec vitest run tests/architecture.test.ts
+
+  parties:
+    name: S1 parties module
+    runs-on: ubuntu-latest
+    needs: governance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+
+      - name: Test @nbcp/parties
+        run: pnpm --filter @nbcp/parties test
+
+      - name: Typecheck @nbcp/parties
+        run: pnpm --filter @nbcp/parties typecheck
+
+      - name: Build @nbcp/parties
+        run: pnpm --filter @nbcp/parties build
+
+      - name: Re-run architecture enforcement (Shared included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+  catalog:
+    name: S2 catalog module
+    runs-on: ubuntu-latest
+    needs: parties
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+          pnpm --filter @nbcp/parties build
+
+      - name: Test @nbcp/catalog
+        run: pnpm --filter @nbcp/catalog test
+
+      - name: Typecheck @nbcp/catalog
+        run: pnpm --filter @nbcp/catalog typecheck
+
+      - name: Build @nbcp/catalog
+        run: pnpm --filter @nbcp/catalog build
+
+      - name: Re-run architecture enforcement (Shared S2 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+  orders:
+    name: S3 orders module
+    runs-on: ubuntu-latest
+    needs: catalog
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+          pnpm --filter @nbcp/parties build
+          pnpm --filter @nbcp/catalog build
+
+      - name: Test @nbcp/orders
+        run: pnpm --filter @nbcp/orders test
+
+      - name: Typecheck @nbcp/orders
+        run: pnpm --filter @nbcp/orders typecheck
+
+      - name: Build @nbcp/orders
+        run: pnpm --filter @nbcp/orders build
+
+      - name: Re-run architecture enforcement (Shared S3 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
