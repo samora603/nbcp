@@ -1,0 +1,40 @@
+{
+  "name": "@nbcp/architecture-enforcement",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NBCP architecture enforcement — ADR-0006 gates (WP-06 / M6)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "nbcp-enforce": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "enforce": "node ./dist/cli.js",
+    "enforce:dev": "tsx src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "nbcp": {
+    "layer": "TOOLING",
+    "workPackage": "WP-06"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

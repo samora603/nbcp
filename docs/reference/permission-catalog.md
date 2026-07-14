@@ -7,7 +7,7 @@
 
 This document is the **canonical inventory** of RBAC permission keys for Core and Shared platform modules. Product packs may add product-prefixed keys; they must not redefine keys listed here.
 
-All keys are **Planned** until registered in `rbac_permissions` at runtime.
+Core Identity / Tenancy / RBAC / Audit keys listed below are **seeded** by `@nbcp/rbac` (`seedCoreCatalog`). Shared and Product keys remain **Planned** until registered at runtime.
 
 ---
 
@@ -222,3 +222,4 @@ Sensitive actions that emit SECURITY/FINANCIAL events should map 1:1 to distinct
 | Version | Date | Notes |
 | --- | --- | --- |
 | 1.0 | 2026-07-14 | Initial catalog from module designs; remediates readiness R-04 |
+| 1.1 | 2026-07-14 | Core Identity/Tenancy/RBAC/Audit keys seeded by WP-04 `@nbcp/rbac` |

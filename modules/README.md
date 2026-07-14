@@ -18,8 +18,16 @@ Domain modules (Core Platform, Shared Business, and Product-Specific capabilitie
 3. Register the Nest module in the API host when apps exist.
 4. Export only the public facade from `src/index.ts`.
 
+## Modules in repo
+
+| Package | Layer | Status |
+| --- | --- | --- |
+| [`identity`](identity/) (`@nbcp/identity`) | Core | WP-02 / M2 implemented (facade + in-memory persistence; Nest host deferred) |
+| [`tenancy`](tenancy/) (`@nbcp/tenancy`) | Core | WP-03 / M3 implemented (orgs, memberships, invitations; Identity facade only) |
+| [`rbac`](rbac/) (`@nbcp/rbac`) | Core | WP-04 / M4 implemented (catalog permissions, roles, authorize, org admin bootstrap) |
+| [`audit`](audit/) (`@nbcp/audit`) | Core | WP-05 / M5 implemented (append-only trail; SECURITY event projection; query) |
+
 ## Template
 
 `_templates/domain-module` is a **canonical structure demo**, not a business feature. It is not intended as a pnpm workspace package for production use.
 
-**Status:** No production domain modules yet — template only.

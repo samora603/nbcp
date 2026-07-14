@@ -384,9 +384,9 @@ Optional: Audit emits audit.record.appended (sampled/off by default)
 
 ### Phase 5 Definition of Done
 
-* [ ] C6 green  
-* [ ] C9 complete (isolation + outbox + audit consume demo)  
-* [ ] Kernel vertical slice demonstrable  
+* [x] C6 green  
+* [x] C9 complete (isolation + outbox + audit consume demo)  
+* [x] Kernel vertical slice demonstrable  
 
 ### Phase 5 risks
 
@@ -433,9 +433,9 @@ Automate backlog B-01…B-06 / D-01…D-03 as applicable to existing packages:
 
 ### Phase 6 Definition of Done
 
-* [ ] Checklist E2–E4 enabled for Core packages  
-* [ ] No open unboundaried exceptions on kernel edges  
-* [ ] Automation backlog W1–W2 items tracked or done  
+* [x] Checklist E2–E4 enabled for Core packages  
+* [x] No open unboundaried exceptions on kernel edges  
+* [x] Automation backlog W1–W2 items tracked or done  
 
 ---
 

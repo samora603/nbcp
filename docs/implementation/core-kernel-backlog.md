@@ -55,7 +55,9 @@ Anything that skips outbox before Identity SECURITY commits, or grants admin ins
 
 **Epic / track:** Kernel infrastructure  
 **Checklist:** C1, C2  
+**Status:** **Complete (M1)** — package `@nbcp/outbox`  
 **Implementation package:** [wp-01-outbox-implementation-package.md](wp-01-outbox-implementation-package.md)  
+**Code:** [`packages/outbox`](../../packages/outbox/)  
 **ADR:** 0003, 0004, 0006 (outbox clauses)
 
 ### Scope
@@ -101,17 +103,19 @@ Anything that skips outbox before Identity SECURITY commits, or grants admin ins
 
 ### Definition of Done
 
-* [ ] D1–D5 complete  
-* [ ] C1–C2 satisfiable  
-* [ ] Non-prod relay smoke succeeded  
-* [ ] No domain-module dependency introduced  
+* [x] D1–D5 complete (`packages/outbox`)
+* [x] C1–C2 satisfiable
+* [x] Non-prod relay smoke succeeded (integration tests)
+* [x] No domain-module dependency introduced
 
 ---
 
 ## Work Package 02 — Identity
 
 **Checklist:** C3, C9 (partial)  
-**Design:** [identity/design.md](../modules/identity/design.md)
+**Status:** **Complete (M2)** — package `@nbcp/identity`  
+**Design:** [identity/design.md](../modules/identity/design.md)  
+**Code:** [`modules/identity`](../../modules/identity/)
 
 ### Scope
 
@@ -162,16 +166,18 @@ Minimum for kernel path (all SECURITY, outbox-mandatory) — full list in [event
 
 ### Definition of Done
 
-* [ ] Deliverables D1–D5  
-* [ ] C3 green; C9 Identity isolation + at least one outbox assertion  
-* [ ] Milestone **M2** criteria met  
+* [x] Deliverables D1–D5  
+* [x] C3 green; C9 Identity isolation + at least one outbox assertion  
+* [x] Milestone **M2** criteria met  
 
 ---
 
 ## Work Package 03 — Tenancy
 
 **Checklist:** C4, C8  
-**Design:** [tenancy/design.md](../modules/tenancy/design.md) · [tenant-access-model.md](../architecture/tenant-access-model.md) · [invitation-acceptance-policy.md](../architecture/invitation-acceptance-policy.md)
+**Status:** **Complete (M3)** — package `@nbcp/tenancy`  
+**Design:** [tenancy/design.md](../modules/tenancy/design.md) · [tenant-access-model.md](../architecture/tenant-access-model.md) · [invitation-acceptance-policy.md](../architecture/invitation-acceptance-policy.md)  
+**Code:** [`modules/tenancy`](../../modules/tenancy/)
 
 ### Scope
 
@@ -227,9 +233,9 @@ Keys owned by Tenancy (enforcement hardens in WP-04):
 
 ### Definition of Done
 
-* [ ] D1–D5  
-* [ ] C4, C8 green  
-* [ ] Milestone **M3** criteria met  
+* [x] D1–D5  
+* [x] C4, C8 green  
+* [x] Milestone **M3** criteria met  
 
 ---
 
@@ -285,9 +291,9 @@ Keys owned by Tenancy (enforcement hardens in WP-04):
 
 ### Definition of Done
 
-* [ ] D1–D5  
-* [ ] C5, C7 green  
-* [ ] Milestone **M4** criteria met  
+* [x] D1–D5  
+* [x] C5, C7 green  
+* [x] Milestone **M4** criteria met  
 
 ---
 
@@ -340,9 +346,9 @@ Keys owned by Tenancy (enforcement hardens in WP-04):
 
 ### Definition of Done
 
-* [ ] D1–D5  
-* [ ] C6 green; C9 complete  
-* [ ] Milestone **M5** criteria met  
+* [x] D1–D5  
+* [x] C6 green; C9 complete  
+* [x] Milestone **M5** criteria met  
 
 ---
 
@@ -390,9 +396,9 @@ N/A (meta). Ensures catalogs remain source of truth.
 
 ### Definition of Done
 
-* [ ] D1–D5  
-* [ ] E2–E4 blocking (or dated warn→fail ≤ Shared kickoff)  
-* [ ] Milestone **M6** criteria met  
+* [x] D1–D5  
+* [x] E2–E4 blocking (or dated warn→fail ≤ Shared kickoff)  
+* [x] Milestone **M6** criteria met  
 
 ---
 
@@ -451,35 +457,35 @@ WP-06 Enforcement (blocking)
 
 ### M1 Kernel Foundation
 
-**Maps to:** WP-01 complete  
+**Maps to:** WP-01 complete — **DONE** (`@nbcp/outbox`)  
 
 | Criterion | Objective signal |
 | --- | --- |
-| Outbox atomic | Integration test pass |
-| Envelope validation | Rejection tests pass |
-| Relay | Non-prod publish smoke |
+| Outbox atomic | Integration tests pass in `packages/outbox` |
+| Envelope validation | Unit tests pass |
+| Relay | Relay + poison path tests pass |
 | Checklist | C1–C2 |
 
 ### M2 Identity Ready
 
-**Maps to:** WP-02 complete  
+**Maps to:** WP-02 complete — **DONE** (`@nbcp/identity`)  
 
 | Criterion | Objective signal |
 | --- | --- |
-| Facade live | Module consumed only via public API |
-| SECURITY outbox | Architecture test green |
-| Isolation | Identity import graph clean |
+| Facade live | `@nbcp/identity` public exports |
+| SECURITY outbox | Architecture + integration tests green |
+| Isolation | Identity import graph clean (architecture tests) |
 | Checklist | C3 |
 
 ### M3 Tenancy Ready
 
-**Maps to:** WP-03 complete  
+**Maps to:** WP-03 complete — **DONE** (`@nbcp/tenancy`)  
 
 | Criterion | Objective signal |
 | --- | --- |
 | Org + invite flows | Integration tests green |
-| Invitation policy | Mismatch denied |
-| Org-created event | Observable for bootstrap |
+| Invitation policy | Mismatch denied (`InvitationEmailMismatchError`) |
+| Org-created event | Outbox `tenancy.organization.created` |
 | Checklist | C4, C8 |
 
 ### M4 Authorization Ready

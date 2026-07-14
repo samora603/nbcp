@@ -6,7 +6,7 @@
 | **Layer** | Core Platform ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
+| **Status** | Implemented (WP-02 / M2) — `modules/identity` (`@nbcp/identity`); Nest/HTTP host deferred |
 | **Last updated** | 2026-07-14 |
 
 **Normative companion:** [Event contracts & outbox](../../architecture/event-contracts.md) ([ADR-0003](../../adr/0003-event-contracts-and-outbox.md)) — Identity security events must use transactional outbox; Identity still imports no other modules

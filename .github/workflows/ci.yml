@@ -58,7 +58,22 @@ jobs:
             docs/implementation/core-platform-execution-plan.md
             docs/implementation/core-kernel-backlog.md
             docs/implementation/wp-01-outbox-implementation-package.md
+            packages/outbox/package.json
+            packages/outbox/src/index.ts
+            modules/identity/package.json
+            modules/identity/src/index.ts
+            modules/tenancy/package.json
+            modules/tenancy/src/index.ts
+            modules/rbac/package.json
+            modules/rbac/src/index.ts
+            modules/audit/package.json
+            modules/audit/src/index.ts
+            tooling/architecture-enforcement/package.json
+            tooling/architecture-enforcement/src/index.ts
+            docs/adr/exceptions/README.md
+            docs/runbooks/kernel-demo.md
             docs/reviews/architecture-readiness-reassessment.md
+            docs/reviews/kernel-completion-report.md
           )
           for f in "${required[@]}"; do
             if [[ ! -f "$f" ]]; then
@@ -112,3 +127,214 @@ jobs:
             if (!pkg.engines || !pkg.engines.node) throw new Error('engines.node required');
             console.log('package.json OK');
           "
+
+  outbox:
+    name: WP-01 outbox package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test @nbcp/outbox
+        run: pnpm --filter @nbcp/outbox test
+
+      - name: Typecheck @nbcp/outbox
+        run: pnpm --filter @nbcp/outbox typecheck
+
+      - name: Build @nbcp/outbox
+        run: pnpm --filter @nbcp/outbox build
+
+  identity:
+    name: WP-02 identity module
+    runs-on: ubuntu-latest
+    needs: outbox
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test @nbcp/identity
+        run: pnpm --filter @nbcp/identity test
+
+      - name: Typecheck @nbcp/identity
+        run: pnpm --filter @nbcp/identity typecheck
+
+      - name: Build @nbcp/identity
+        run: pnpm --filter @nbcp/identity build
+
+  tenancy:
+    name: WP-03 tenancy module
+    runs-on: ubuntu-latest
+    needs: identity
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test @nbcp/tenancy
+        run: pnpm --filter @nbcp/tenancy test
+
+      - name: Typecheck @nbcp/tenancy
+        run: pnpm --filter @nbcp/tenancy typecheck
+
+      - name: Build @nbcp/tenancy
+        run: pnpm --filter @nbcp/tenancy build
+
+  rbac:
+    name: WP-04 rbac module
+    runs-on: ubuntu-latest
+    needs: tenancy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+
+      - name: Test @nbcp/rbac
+        run: pnpm --filter @nbcp/rbac test
+
+      - name: Typecheck @nbcp/rbac
+        run: pnpm --filter @nbcp/rbac typecheck
+
+      - name: Build @nbcp/rbac
+        run: pnpm --filter @nbcp/rbac build
+
+  audit:
+    name: WP-05 audit module
+    runs-on: ubuntu-latest
+    needs: rbac
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+
+      - name: Test @nbcp/audit
+        run: pnpm --filter @nbcp/audit test
+
+      - name: Typecheck @nbcp/audit
+        run: pnpm --filter @nbcp/audit typecheck
+
+      - name: Build @nbcp/audit
+        run: pnpm --filter @nbcp/audit build
+
+  governance:
+    name: WP-06 architecture enforcement (E2–E4)
+    runs-on: ubuntu-latest
+    needs: audit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build kernel + enforcement
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+          pnpm --filter @nbcp/architecture-enforcement build
+
+      - name: Test @nbcp/architecture-enforcement
+        run: pnpm --filter @nbcp/architecture-enforcement test
+
+      - name: Typecheck @nbcp/architecture-enforcement
+        run: pnpm --filter @nbcp/architecture-enforcement typecheck
+
+      - name: Enforce ADR-0006 gates (blocking)
+        run: pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+      - name: Kernel architecture tests (C9 / E3)
+        run: |
+          pnpm --filter @nbcp/outbox test
+          pnpm --filter @nbcp/identity exec vitest run tests/architecture.test.ts
+          pnpm --filter @nbcp/tenancy exec vitest run tests/architecture.test.ts
+          pnpm --filter @nbcp/rbac exec vitest run tests/architecture.test.ts
+          pnpm --filter @nbcp/audit exec vitest run tests/architecture.test.ts

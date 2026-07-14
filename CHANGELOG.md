@@ -1,12 +1,3 @@
-# Changelog
-
-All notable changes to the Noventra Business Core Platform (NBCP) are documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) once versioned releases begin.
-
----
-
 ## [Unreleased]
 
 ### Added
@@ -42,16 +33,10 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [Core kernel backlog](docs/implementation/core-kernel-backlog.md) (WP-01…06 work packages, milestones M1–M6).
 - [WP-01 outbox implementation package](docs/implementation/wp-01-outbox-implementation-package.md) (pre-code Outbox Foundation briefing).
 - [Architecture readiness reassessment](docs/reviews/architecture-readiness-reassessment.md) (8.5/10 — ready for implementation).
+- **`@nbcp/outbox`** (`packages/outbox`) — WP-01 Outbox Foundation / M1: envelope validation, unit-of-work staging, outbox store port + in-memory adapter, relay with poison quarantine, archive seam, consumer idempotency, replay hooks, architecture/unit/integration tests.
+- **`@nbcp/identity`** (`modules/identity`) — WP-02 Identity / M2: principal lifecycle, sessions, password reset, external links; SECURITY events via `@nbcp/outbox`; zero module deps; unit/integration/architecture tests.
+- **`@nbcp/tenancy`** (`modules/tenancy`) — WP-03 Tenancy / M3: organizations, locations, memberships, invitations; Identity facade only; invitation email-bind; outbox events; tests green.
 
----
+### Changed
 
-## Release notes policy
-
-- `Added` — new capabilities
-- `Changed` — changes in existing behavior
-- `Deprecated` — soon-to-be removed features
-- `Removed` — removed features
-- `Fixed` — bug fixes
-- `Security` — vulnerability fixes
-
-Breaking changes must be called out explicitly under `Changed` or `Removed` and referenced from relevant ADRs or migration notes.
+- Root workspace scripts now delegate `test` / `typecheck` / `build` to packages via pnpm filters when present.

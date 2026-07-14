@@ -6,7 +6,7 @@
 | **Layer** | Core Platform ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
+| **Status** | Implemented (WP-03 / M3) — `modules/tenancy` (`@nbcp/tenancy`); Nest/HTTP host deferred |
 | **Last updated** | 2026-07-14 |
 
 **Normative companion:** [Tenant access model](../../architecture/tenant-access-model.md) (bootstrap, location scope) · [Invitation acceptance policy](../../architecture/invitation-acceptance-policy.md)

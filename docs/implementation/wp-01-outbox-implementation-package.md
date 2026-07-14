@@ -1,6 +1,6 @@
 # WP-01 — Outbox Foundation Implementation Package
 
-**Status:** Implementation preparation (ready for coding after review)  
+**Status:** Implemented (M1 Kernel Foundation) — see [`@nbcp/outbox`](../../packages/outbox/)  
 **Work package:** [WP-01 Outbox Foundation](core-kernel-backlog.md#work-package-01--outbox-foundation)  
 **Milestone:** M1 Kernel Foundation  
 **Checklist gates:** C1, C2 ([bootstrap-checklist.md](bootstrap-checklist.md))  
@@ -333,6 +333,23 @@ Use at coding start (still no design forced here):
 | Envelope / outbox standard | [event-contracts.md](../architecture/event-contracts.md) |
 | Automation IDs O-01…O-04 | [architecture-automation-backlog.md](architecture-automation-backlog.md) |
 | Replay ops | [event-replay.md](../runbooks/event-replay.md) |
+
+---
+
+## Implementation status (M1 complete)
+
+| Package AC | Evidence |
+| --- | --- |
+| Atomicity | `tests/outbox.integration.test.ts` commit/rollback |
+| Validation | `tests/envelope.unit.test.ts` |
+| Relay | integration + `tests/failure-path.test.ts` |
+| At-least-once + idempotency | `tests/replay.test.ts` |
+| No domain DAG pollution | `tests/architecture.test.ts` |
+| Harness | `@nbcp/outbox/testing` |
+| Observability | gauges/counters in relay + `InMemoryOutboxMetrics` |
+| Policy docs | `packages/outbox/README.md` |
+
+**Remaining gaps (tracked, not blocking M1):** production DB `OutboxStore` adapter; full cold archive (currently `NoopEventArchive` / in-memory); catalog CI allow-list (WP-06); Node 22+ in local/CI prefer `.nvmrc` (tests ran on available toolchain).
 
 ---
 

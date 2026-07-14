@@ -30,15 +30,15 @@ Legend: `[ ]` pending · `[x]` complete (mark in implementation PRs / project tr
 
 | # | Gate | Completion criteria |
 | --- | --- | --- |
-| C1 | Outbox technical foundation | Persist aggregate + outbox in one unit of work; relay exists (even stub) |
-| C2 | Envelope validation | Publisher rejects incomplete envelopes (ADR-0003) |
-| C3 | Identity module | Facade + tables; zero module deps; SECURITY events via outbox |
-| C4 | Tenancy module | Org/location/membership/invitation; depends only Identity as designed |
-| C5 | RBAC module | Permissions/roles/assignments; org admin bootstrap composer |
-| C6 | Audit module | Append-only; consumes Identity/Tenancy/RBAC events; no reverse deps from Identity/Tenancy/RBAC |
-| C7 | Tenant access | org create → admin role assignment without owner bypass |
-| C8 | Invitation policy | Email mismatch deny per invitation-acceptance-policy |
-| C9 | Architecture tests (kernel) | Identity isolation; Identity/Tenancy/RBAC ↛ Audit; SECURITY mutation ⇒ outbox row |
+| C1 | Outbox technical foundation | Persist aggregate + outbox in one unit of work; relay exists (even stub) | [x] |
+| C2 | Envelope validation | Publisher rejects incomplete envelopes (ADR-0003) | [x] |
+| C3 | Identity module | Facade + tables; zero module deps; SECURITY events via outbox | [x] |
+| C4 | Tenancy module | Org/location/membership/invitation; depends only Identity as designed | [x] |
+| C5 | RBAC module | Permissions/roles/assignments; org admin bootstrap composer | [x] |
+| C6 | Audit module | Append-only; consumes Identity/Tenancy/RBAC events; no reverse deps from Identity/Tenancy/RBAC | [x] |
+| C7 | Tenant access | org create → admin role assignment without owner bypass | [x] |
+| C8 | Invitation policy | Email mismatch deny per invitation-acceptance-policy | [x] |
+| C9 | Architecture tests (kernel) | Identity isolation; Identity/Tenancy/RBAC ↛ Audit; SECURITY mutation ⇒ outbox row | [x] |
 
 **Exit:** C1–C9 green in CI → Shared domains may start.
 
@@ -80,13 +80,13 @@ Legend: `[ ]` pending · `[x]` complete (mark in implementation PRs / project tr
 
 | # | Gate | Completion criteria |
 | --- | --- | --- |
-| E1 | Foundation file presence | Existing CI green |
-| E2 | Boundary / dependency graph gate | Fails Shared→Product, Core→Shared, Identity→*, Payments→Ledger writes |
-| E3 | Outbox architecture tests | Tagged suite on PR for SECURITY/FINANCIAL paths |
-| E4 | Event catalog validation | Unknown publish `type` fails CI |
-| E5 | Permission catalog validation | Unknown permission keys fail CI (when scanning enabled) |
-| E6 | Doc presence for new modules | `docs/modules/<name>/design.md` required |
-| E7 | Exception expiry | Temporary exceptions have dates; expired fail |
+| E1 | Foundation file presence | Existing CI green | [x] |
+| E2 | Boundary / dependency graph gate | Fails Shared→Product, Core→Shared, Identity→*, Payments→Ledger writes | [x] |
+| E3 | Outbox architecture tests | Tagged suite on PR for SECURITY/FINANCIAL paths | [x] (SECURITY; FINANCIAL when modules exist) |
+| E4 | Event catalog validation | Unknown publish `type` fails CI | [x] |
+| E5 | Permission catalog validation | Unknown permission keys fail CI (when scanning enabled) | [x] (Core) |
+| E6 | Doc presence for new modules | `docs/modules/<name>/design.md` required | [x] |
+| E7 | Exception expiry | Temporary exceptions have dates; expired fail | [x] |
 
 **Exit:** E2–E4 **blocking** on default branch before Shared commerce merge to main; E5–E7 progressive warn→fail.
 

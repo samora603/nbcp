@@ -11,10 +11,17 @@
   },
   "scripts": {
     "dev": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
-    "build": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "build": "pnpm -r --filter \"./packages/**\" --filter \"./modules/identity\" --filter \"./modules/tenancy\" --filter \"./modules/rbac\" --filter \"./modules/audit\" --filter \"./tooling/architecture-enforcement\" run build",
     "lint": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
-    "typecheck": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
-    "test": "echo \"Workspace foundation only — application packages not yet scaffolded.\"",
+    "typecheck": "pnpm -r --filter \"./packages/**\" --filter \"./modules/identity\" --filter \"./modules/tenancy\" --filter \"./modules/rbac\" --filter \"./modules/audit\" --filter \"./tooling/architecture-enforcement\" run typecheck",
+    "test": "pnpm -r --filter \"./packages/**\" --filter \"./modules/identity\" --filter \"./modules/tenancy\" --filter \"./modules/rbac\" --filter \"./modules/audit\" --filter \"./tooling/architecture-enforcement\" run test",
+    "test:outbox": "pnpm --filter @nbcp/outbox test",
+    "test:identity": "pnpm --filter @nbcp/identity test",
+    "test:tenancy": "pnpm --filter @nbcp/tenancy test",
+    "test:rbac": "pnpm --filter @nbcp/rbac test",
+    "test:audit": "pnpm --filter @nbcp/audit test",
+    "test:enforcement": "pnpm --filter @nbcp/architecture-enforcement test",
+    "enforce:architecture": "pnpm --filter @nbcp/architecture-enforcement build && pnpm --filter @nbcp/architecture-enforcement exec node ./dist/cli.js",
     "format": "echo \"Workspace foundation only — format tooling not yet configured.\""
   }
 }

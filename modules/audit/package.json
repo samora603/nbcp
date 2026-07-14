@@ -1,0 +1,43 @@
+{
+  "name": "@nbcp/audit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NBCP Audit Core module — append-only trail + SECURITY event projection (WP-05)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@nbcp/outbox": "workspace:*",
+    "@nbcp/identity": "workspace:*",
+    "@nbcp/tenancy": "workspace:*",
+    "@nbcp/rbac": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "nbcp": {
+    "layer": "CORE",
+    "workPackage": "WP-05",
+    "moduleDependencies": ["identity", "tenancy", "rbac"],
+    "consumesEventsFrom": ["identity", "tenancy", "rbac"]
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

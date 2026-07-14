@@ -8,7 +8,7 @@
 
 This document is the **canonical inventory** of NBCP platform domain events: names, owners, consumers, classification, replay eligibility, and versioning status.
 
-All rows are **Planned** until the owning module is implemented and the event is emitted in production code. Module design docs remain the narrative source for payloads; **this catalog is authoritative for type ↔ ownership ↔ class ↔ replay**.
+All rows are **Planned** until the owning module is implemented and the event is emitted in production code, except where Status is marked **Published** (Identity / WP-02; Tenancy / WP-03 except `tenancy.invitation.expired` worker; RBAC / WP-04; Audit / WP-05). Module design docs remain the narrative source for payloads; **this catalog is authoritative for type ↔ ownership ↔ class ↔ replay**.
 
 ---
 
@@ -113,66 +113,66 @@ Populate-from: module `docs/modules/*/design.md` Event sections. Modules not yet
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `identity.user.registered` | Identity | SECURITY | Notifications, Audit, Tenancy (optional) | Yes | 1 | Planned |
-| `identity.user.email_verified` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.user.activated` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.user.suspended` | Identity | SECURITY | Session revoke workers, Audit, Tenancy | Yes | 1 | Planned |
-| `identity.user.deactivated` | Identity | SECURITY | Session revoke, Audit | Yes | 1 | Planned |
-| `identity.user.deleted` | Identity | SECURITY | Session revoke, Tenancy handlers | Yes | 1 | Planned |
-| `identity.user.password_changed` | Identity | SECURITY | Session revoke, Audit, Notifications | Yes | 1 | Planned |
-| `identity.user.locked_out` | Identity | SECURITY | Audit, Notifications (optional) | Yes | 1 | Planned |
-| `identity.user.unlock` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.external_identity.linked` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.external_identity.unlinked` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.session.issued` | Identity | SECURITY | Audit (sampled/policy) | Conditional | 1 | Planned |
-| `identity.session.revoked` | Identity | SECURITY | Audit | Yes | 1 | Planned |
-| `identity.password_reset.requested` | Identity | SECURITY | Notifications | Yes | 1 | Planned |
-| `identity.password_reset.completed` | Identity | SECURITY | Session revoke, Audit | Yes | 1 | Planned |
+| `identity.user.registered` | Identity | SECURITY | Notifications, Audit, Tenancy (optional) | Yes | 1 | Published |
+| `identity.user.email_verified` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.user.activated` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.user.suspended` | Identity | SECURITY | Session revoke workers, Audit, Tenancy | Yes | 1 | Published |
+| `identity.user.deactivated` | Identity | SECURITY | Session revoke, Audit | Yes | 1 | Published |
+| `identity.user.deleted` | Identity | SECURITY | Session revoke, Tenancy handlers | Yes | 1 | Published |
+| `identity.user.password_changed` | Identity | SECURITY | Session revoke, Audit, Notifications | Yes | 1 | Published |
+| `identity.user.locked_out` | Identity | SECURITY | Audit, Notifications (optional) | Yes | 1 | Published |
+| `identity.user.unlock` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.external_identity.linked` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.external_identity.unlinked` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.session.issued` | Identity | SECURITY | Audit (sampled/policy) | Conditional | 1 | Published |
+| `identity.session.revoked` | Identity | SECURITY | Audit | Yes | 1 | Published |
+| `identity.password_reset.requested` | Identity | SECURITY | Notifications | Yes | 1 | Published |
+| `identity.password_reset.completed` | Identity | SECURITY | Session revoke, Audit | Yes | 1 | Published |
 
 ### Tenancy
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `tenancy.organization.created` | Tenancy | SECURITY | Audit, analytics stubs, billing entitlements stub | Yes | 1 | Planned |
-| `tenancy.organization.activated` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
-| `tenancy.organization.suspended` | Tenancy | SECURITY | Higher modules deny-write, Audit | Yes | 1 | Planned |
-| `tenancy.organization.archived` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
-| `tenancy.organization.deleted` | Tenancy | SECURITY | Cascade policy handlers, Audit | Conditional | 1 | Planned |
-| `tenancy.organization.owner_transferred` | Tenancy | SECURITY | Audit, RBAC, Notifications | Yes | 1 | Planned |
-| `tenancy.location.created` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
-| `tenancy.location.updated` | Tenancy | BUSINESS | Audit | Yes | 1 | Planned |
-| `tenancy.location.deactivated` | Tenancy | SECURITY | Scheduling/Inventory policies | Yes | 1 | Planned |
-| `tenancy.membership.created` | Tenancy | SECURITY | RBAC default roles, Audit | Yes | 1 | Planned |
-| `tenancy.membership.activated` | Tenancy | SECURITY | Audit, Notifications | Yes | 1 | Planned |
-| `tenancy.membership.suspended` | Tenancy | SECURITY | RBAC context invalidation, Audit | Yes | 1 | Planned |
-| `tenancy.membership.removed` | Tenancy | SECURITY | RBAC revoke, Audit | Yes | 1 | Planned |
-| `tenancy.membership.left` | Tenancy | SECURITY | RBAC revoke, Audit | Yes | 1 | Planned |
-| `tenancy.invitation.created` | Tenancy | SECURITY | Notifications, Audit | Yes | 1 | Planned |
-| `tenancy.invitation.accepted` | Tenancy | SECURITY | Membership activation, Audit | Yes | 1 | Planned |
-| `tenancy.invitation.declined` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
-| `tenancy.invitation.revoked` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
+| `tenancy.organization.created` | Tenancy | SECURITY | Audit, analytics stubs, billing entitlements stub | Yes | 1 | Published |
+| `tenancy.organization.activated` | Tenancy | SECURITY | Audit | Yes | 1 | Published |
+| `tenancy.organization.suspended` | Tenancy | SECURITY | Higher modules deny-write, Audit | Yes | 1 | Published |
+| `tenancy.organization.archived` | Tenancy | SECURITY | Audit | Yes | 1 | Published |
+| `tenancy.organization.deleted` | Tenancy | SECURITY | Cascade policy handlers, Audit | Conditional | 1 | Published |
+| `tenancy.organization.owner_transferred` | Tenancy | SECURITY | Audit, RBAC, Notifications | Yes | 1 | Published |
+| `tenancy.location.created` | Tenancy | SECURITY | Audit | Yes | 1 | Published |
+| `tenancy.location.updated` | Tenancy | BUSINESS | Audit | Yes | 1 | Published |
+| `tenancy.location.deactivated` | Tenancy | SECURITY | Scheduling/Inventory policies | Yes | 1 | Published |
+| `tenancy.membership.created` | Tenancy | SECURITY | RBAC default roles, Audit | Yes | 1 | Published |
+| `tenancy.membership.activated` | Tenancy | SECURITY | Audit, Notifications | Yes | 1 | Published |
+| `tenancy.membership.suspended` | Tenancy | SECURITY | RBAC context invalidation, Audit | Yes | 1 | Published |
+| `tenancy.membership.removed` | Tenancy | SECURITY | RBAC revoke, Audit | Yes | 1 | Published |
+| `tenancy.membership.left` | Tenancy | SECURITY | RBAC revoke, Audit | Yes | 1 | Published |
+| `tenancy.invitation.created` | Tenancy | SECURITY | Notifications, Audit | Yes | 1 | Published |
+| `tenancy.invitation.accepted` | Tenancy | SECURITY | Membership activation, Audit | Yes | 1 | Published |
+| `tenancy.invitation.declined` | Tenancy | SECURITY | Audit | Yes | 1 | Published |
+| `tenancy.invitation.revoked` | Tenancy | SECURITY | Audit | Yes | 1 | Published |
 | `tenancy.invitation.expired` | Tenancy | SECURITY | Audit | Yes | 1 | Planned |
 
 ### RBAC
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `rbac.permission.registered` | RBAC | SECURITY | Audit, docs generators | Yes | 1 | Planned |
-| `rbac.permission.deprecated` | RBAC | SECURITY | Audit | Yes | 1 | Planned |
-| `rbac.role.created` | RBAC | SECURITY | Audit | Yes | 1 | Planned |
-| `rbac.role.updated` | RBAC | SECURITY | Audit, cache invalidation | Yes | 1 | Planned |
-| `rbac.role.deleted` | RBAC | SECURITY | Assignment revoke workers, Audit | Yes | 1 | Planned |
-| `rbac.role_assignment.granted` | RBAC | SECURITY | Audit, Notifications | Yes | 1 | Planned |
-| `rbac.role_assignment.revoked` | RBAC | SECURITY | Audit | Yes | 1 | Planned |
-| `rbac.role_assignment.scope_changed` | RBAC | SECURITY | Audit | Yes | 1 | Planned |
+| `rbac.permission.registered` | RBAC | SECURITY | Audit, docs generators | Yes | 1 | Published |
+| `rbac.permission.deprecated` | RBAC | SECURITY | Audit | Yes | 1 | Published |
+| `rbac.role.created` | RBAC | SECURITY | Audit | Yes | 1 | Published |
+| `rbac.role.updated` | RBAC | SECURITY | Audit, cache invalidation | Yes | 1 | Published |
+| `rbac.role.deleted` | RBAC | SECURITY | Assignment revoke workers, Audit | Yes | 1 | Published |
+| `rbac.role_assignment.granted` | RBAC | SECURITY | Audit, Notifications | Yes | 1 | Published |
+| `rbac.role_assignment.revoked` | RBAC | SECURITY | Audit | Yes | 1 | Published |
+| `rbac.role_assignment.scope_changed` | RBAC | SECURITY | Audit | Yes | 1 | Published |
 
 ### Audit
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `audit.record.appended` | Audit | AUDIT | Optional/sampled only | No | 1 | Planned |
-| `audit.retention.archived` | Audit | AUDIT | Ops | Conditional | 1 | Planned |
-| `audit.retention.purged` | Audit | AUDIT | Dual-control ops | No | 1 | Planned |
+| `audit.record.appended` | Audit | AUDIT | Optional/sampled only | No | 1 | Published |
+| `audit.retention.archived` | Audit | AUDIT | Ops | Conditional | 1 | Published |
+| `audit.retention.purged` | Audit | AUDIT | Dual-control ops | No | 1 | Published |
 
 ### Parties
 
@@ -423,3 +423,7 @@ Suggested reviewers: owning module CODEOWNERS + platform architect for cross-mod
 | Version | Date | Notes |
 | --- | --- | --- |
 | 1.0 | 2026-07-14 | Initial catalog; remediates hardening S-02 / P-02; all Status = Planned |
+| 1.1 | 2026-07-14 | Identity events Status → Published (WP-02 / `@nbcp/identity`) |
+| 1.2 | 2026-07-14 | Tenancy events Status → Published (WP-03 / `@nbcp/tenancy`; expired worker still Planned) |
+| 1.3 | 2026-07-14 | RBAC events Status → Published (WP-04 / `@nbcp/rbac`) |
+| 1.4 | 2026-07-14 | Audit events Status → Published (WP-05 / `@nbcp/audit`) |
