@@ -1,6 +1,7 @@
 # ADR-0005: Financial Truth and Projection Ownership
 
-- **Status:** Proposed
+- **Status:** Accepted
+- **Accepted:** 2026-07-14
 - **Date:** 2026-07-14
 - **Deciders:** Noventra platform architecture
 - **Tags:** finance, ledger, reporting, payments, orders, projections, audit, ownership
@@ -267,10 +268,10 @@ Periodic reconciliation jobs (when implemented) compare keys/amounts between SoR
 ### Documentation
 
 1. Link this ADR from [reporting/design.md](../modules/reporting/design.md), [ledger/design.md](../modules/ledger/design.md), [payments/design.md](../modules/payments/design.md), and [event catalog](../reference/event-catalog.md) consumer rules.
-2. Publish `docs/runbooks/rebuild-projections.md` (Reporting) and `docs/runbooks/ledger-gap-fill-and-reversal.md` (or fold into event-replay runbook).
+2. ~~Publish rebuild/replay runbooks.~~ → [event-replay.md](../runbooks/event-replay.md), [tenant-projection-rebuild.md](../runbooks/tenant-projection-rebuild.md), [full-reporting-rebuild.md](../runbooks/full-reporting-rebuild.md).
 3. Document default vs override recognition templates under Ledger chart/template design.
 4. Optional thin guide `docs/architecture/financial-projection-ownership.md` that points **only** to this ADR (avoid duplicating policy).
-5. Accept this ADR after review; mark hardening S-03 remediated (docs).
+5. ~~Accept this ADR after review.~~ → **Accepted** 2026-07-14.
 
 ### Implementation controls (when coding begins — not part of this ADR authoring)
 

@@ -165,9 +165,9 @@ Modules that **may** depend on Audit MAY also call `audit.record` in the same ap
 ## 7. Related documents
 
 - [ADR-0003](../adr/0003-event-contracts-and-outbox.md)
-- [ADR-0004](../adr/0004-event-retention-replay-rebuild.md) (retention, replay, rebuild — Proposed)
-- [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md) (financial truth / Ledger vs Reporting — Proposed)
-- [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (boundaries, outbox, CI governance — Proposed)
+- [ADR-0004](../adr/0004-event-retention-replay-rebuild.md) (retention, replay, rebuild — Accepted)
+- [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md) (financial truth / Ledger vs Reporting — Accepted)
+- [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (boundaries, outbox, CI governance — Accepted)
 - [Event catalog](../reference/event-catalog.md) (authoritative type inventory — remediates S-02 / P-02)
 - [Kernel review](../reviews/kernel-review.md)
 - [tenant-access-model.md](tenant-access-model.md) (org bootstrap uses events safely)

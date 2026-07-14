@@ -25,4 +25,4 @@ Normative rules for envelopes, outbox, and consumers: **[event-contracts.md](eve
 
 ## Status
 
-Standard accepted (ADR-0003). Retention/replay/rebuild policy: [ADR-0004](../adr/0004-event-retention-replay-rebuild.md) (Proposed). Authoritative type inventory: [event catalog](../reference/event-catalog.md). Runtime outbox/schemas are not implemented until module scaffolding.
+Standard accepted (ADR-0003). Retention/replay/rebuild policy: [ADR-0004](../adr/0004-event-retention-replay-rebuild.md) (Accepted). Authoritative type inventory: [event catalog](../reference/event-catalog.md). Runtime outbox/schemas are not implemented until module scaffolding.

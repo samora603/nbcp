@@ -36,7 +36,7 @@ Architecture **direction is sound and approved**. What remains is not “which d
 
 1. **Projections without retention (S-01)** — Reporting claims rebuildability ([reporting/design.md](../modules/reporting/design.md) §2, §5.3) but no ADR defines event log retention, cold storage, or rebuild RPO/RTO.
 2. **Unindexed event surface (S-02 / P-02)** — ~~no event-catalog~~ → **remediated (docs):** [event catalog](../reference/event-catalog.md) (canonical under `docs/reference/`; stub at [architecture/event-catalog.md](../architecture/event-catalog.md)).
-3. **Dual financial interpreters (S-03)** — ~~no single mapping-owner document~~ → **remediated (docs):** [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md) (Proposed).
+3. **Dual financial interpreters (S-03)** — ~~no single mapping-owner document~~ → **remediated:** [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md) (Accepted).
 4. **Policy without enforcement (P-01, P-03, P-09)** — CI ([`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)) only checks file presence; no outbox/boundary/architecture tests exist.
 5. **Bootstrap as literature (P-04)** — Org admin sequence is normative in [tenant-access-model.md](../architecture/tenant-access-model.md) §4 but has no mandatory scaffold checklist tied to generators.
 
@@ -175,7 +175,9 @@ None of the above is yet an accepted ADR — **blocker for declaring projections
 
 ### 3.6 Concrete recommendation (S-03)
 
-Produce **`docs/architecture/financial-projection-ownership.md`** (or ADR-0005) stating:
+**Delivered:** [ADR-0005](../adr/0005-financial-truth-and-projection-ownership.md) (Accepted) · stub [financial-projection-ownership.md](../architecture/financial-projection-ownership.md).
+
+Normative points (see ADR-0005):
 
 1. Default recognition: **Revenue/AR posts on `payments.capture.succeeded`** (and refunds on refund events); Orders commit does **not** post revenue unless a named industry template overrides.  
 2. Reporting sales facts may still project `orders.order.committed` for operational sales dashboards — labeled **non-GAAP / non-book**.  
@@ -190,7 +192,7 @@ Produce **`docs/architecture/financial-projection-ownership.md`** (or ADR-0005) 
 
 | Enforcement need | Today | Hardening need |
 | --- | --- | --- |
-| **Dependency rules** | Documented DAG + [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (Proposed) | Automate import-graph validation in CI (P-03) |
+| **Dependency rules** | Documented DAG + [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (Accepted) | Automate import-graph validation in CI (P-03) |
 | **Boundary linting** | Normative in ADR-0006 | Fail CI on deep imports & Shared→Product / Core→Shared |
 | **Module templates** | Present (`_templates/domain-module`) | Generator + checklist that new modules must copy template (P-04) |
 | **Outbox verification (P-01)** | Normative in ADR-0003 + ADR-0006 | Architecture test: security/financial use cases assert outbox row in same TX; CI job when apps exist |
@@ -225,10 +227,10 @@ Artifacts that **should exist (or be accepted as ADRs/docs) before generating pr
 | **P0** | Event catalog (initial) | Close S-02 / P-02 | `docs/architecture/event-catalog.md` |
 | **P0** | Financial projection ownership | Close S-03 | `docs/architecture/financial-projection-ownership.md` **or** `docs/adr/0005-financial-projection-ownership.md` |
 | **P0** | Kernel dependency matrix (explicit) | Stop implementer confusion; extend domain-map | `docs/architecture/kernel-dependency-matrix.md` (tenant-access §6 exists—promote/link as standalone index) |
-| **P1** | Permission catalog | Unify RBAC seeds (S-04 / prior P-03) | `docs/architecture/permission-catalog.md` |
-| **P1** | Implementation bootstrap guide | P-04 scaffolding order | `docs/architecture/implementation-bootstrap.md` |
-| **P1** | Architecture enforcement plan | P-03 / P-09 tooling & CI gates | [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) · stub [architecture-enforcement.md](../architecture/architecture-enforcement.md) |
-| **P1** | Rebuild projections runbook | Ops for S-01 | `docs/runbooks/rebuild-projections.md` |
+| **P1** | Permission catalog | Unify RBAC seeds (S-04 / prior P-03) | [permission-catalog.md](../reference/permission-catalog.md) |
+| **P1** | Implementation bootstrap guide | P-04 scaffolding order | [bootstrap-checklist.md](../implementation/bootstrap-checklist.md) · [core-bootstrap-plan.md](../implementation/core-bootstrap-plan.md) |
+| **P1** | Architecture enforcement plan | P-03 / P-09 tooling & CI gates | [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) · [automation backlog](../implementation/architecture-automation-backlog.md) |
+| **P1** | Rebuild projections runbook | Ops for S-01 | [tenant-projection-rebuild.md](../runbooks/tenant-projection-rebuild.md) · [full-reporting-rebuild.md](../runbooks/full-reporting-rebuild.md) · [event-replay.md](../runbooks/event-replay.md) |
 | **P1** | Money-path sequence | Orders↔Inventory↔Payments↔Ledger | `docs/architecture/commerce-flow.md` |
 | **P2** | Metadata anti-leak standard | S-05 | Section in `module-standard.md` or `docs/standards/metadata.md` |
 | **P2** | Audit mandatory events extension | Extend beyond kernel checklist | Section in `event-catalog.md` + audit design |
@@ -268,7 +270,7 @@ Event catalog and permission catalog may be **living docs** under architecture/ 
 | No event retention/rebuild ADR | S-01 |
 | No event catalog | S-02 / P-02 |
 | No Ledger vs Reporting ownership doc/ADR | S-03 |
-| No written enforcement plan for outbox + boundaries + CI | P-01, P-03, P-09 — **docs remediated:** [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (Proposed); automation still Pending |
+| No written enforcement plan for outbox + boundaries + CI | P-01, P-03, P-09 — **remediated:** [ADR-0006](../adr/0006-architecture-enforcement-and-governance.md) (Accepted); automation Pending ([backlog](../implementation/architecture-automation-backlog.md)) |
 
 ### Non-blockers (may proceed in parallel with early scaffolds)
 

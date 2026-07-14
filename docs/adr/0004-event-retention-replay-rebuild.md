@@ -1,6 +1,7 @@
 # ADR-0004: Event Retention, Replay, and Projection Rebuild
 
-- **Status:** Proposed
+- **Status:** Accepted
+- **Accepted:** 2026-07-14
 - **Date:** 2026-07-14
 - **Deciders:** Noventra platform architecture
 - **Tags:** events, outbox, retention, replay, rebuild, reporting, ledger, audit, operations
@@ -212,10 +213,10 @@ Allowed in non-prod anytime; in prod only under incident severity with dual appr
 ### Documentation
 
 1. ~~Publish event catalog with classification / replay columns (hardening S-02).~~ → [docs/reference/event-catalog.md](../reference/event-catalog.md).  
-2. Publish `docs/runbooks/rebuild-projections.md` (Reporting tenant/full rebuild steps).  
-3. Publish `docs/runbooks/event-replay.md` (who/how/dry-run).  
+2. ~~Publish Reporting rebuild runbooks.~~ → [tenant-projection-rebuild.md](../runbooks/tenant-projection-rebuild.md), [full-reporting-rebuild.md](../runbooks/full-reporting-rebuild.md).  
+3. ~~Publish event replay runbook.~~ → [event-replay.md](../runbooks/event-replay.md).  
 4. Link from [event-contracts.md](../architecture/event-contracts.md) and [reporting/design.md](../modules/reporting/design.md).  
-5. ~~Accept companion ADR for financial projection ownership (hardening S-03).~~ → [ADR-0005](0005-financial-truth-and-projection-ownership.md) (Proposed).  
+5. ~~Companion financial ownership ADR.~~ → [ADR-0005](0005-financial-truth-and-projection-ownership.md) (Accepted).  
 
 ### Implementation (when coding begins — not part of this ADR authoring)
 

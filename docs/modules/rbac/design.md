@@ -9,7 +9,7 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
-**Normative companion:** [Tenant access model](../../architecture/tenant-access-model.md) (deny-by-default pipeline, location scope, org admin bootstrap)
+**Normative companions:** [Tenant access model](../../architecture/tenant-access-model.md) (deny-by-default pipeline, location scope, org admin bootstrap) · [Permission catalog](../../reference/permission-catalog.md)
 
 ---
 

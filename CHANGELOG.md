@@ -33,10 +33,12 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [Reporting module design](docs/modules/reporting/design.md) (Shared Business — projections & exports).
 - [Shared domains review](docs/reviews/shared-domains-review.md); [Platform architecture review](docs/reviews/platform-architecture-review.md).
 - [Architecture hardening review](docs/reviews/architecture-hardening-review.md) (conditionally ready — governance gaps before money path).
-- [ADR-0004](docs/adr/0004-event-retention-replay-rebuild.md) (Proposed — event retention, replay, rebuild).
+- [ADR-0004](docs/adr/0004-event-retention-replay-rebuild.md) (Accepted — event retention, replay, rebuild).
 - [Event catalog](docs/reference/event-catalog.md) (authoritative domain-event inventory; remediates hardening S-02 / P-02).
-- [ADR-0005](docs/adr/0005-financial-truth-and-projection-ownership.md) (Proposed — financial truth and projection ownership; remediates hardening S-03).
-- [ADR-0006](docs/adr/0006-architecture-enforcement-and-governance.md) (Proposed — architecture enforcement and governance; remediates hardening P-01 / P-03 / P-09).
+- [ADR-0005](docs/adr/0005-financial-truth-and-projection-ownership.md) (Accepted — financial truth and projection ownership; remediates hardening S-03).
+- [ADR-0006](docs/adr/0006-architecture-enforcement-and-governance.md) (Accepted — architecture enforcement and governance; remediates hardening P-01 / P-03 / P-09).
+- Implementation readiness package: [permission catalog](docs/reference/permission-catalog.md), [event-replay](docs/runbooks/event-replay.md) / [tenant](docs/runbooks/tenant-projection-rebuild.md) / [full](docs/runbooks/full-reporting-rebuild.md) rebuild runbooks, [bootstrap checklist](docs/implementation/bootstrap-checklist.md), [core bootstrap plan](docs/implementation/core-bootstrap-plan.md), [architecture automation backlog](docs/implementation/architecture-automation-backlog.md).
+- [Architecture readiness reassessment](docs/reviews/architecture-readiness-reassessment.md) (8.5/10 — ready for implementation).
 
 ---
 

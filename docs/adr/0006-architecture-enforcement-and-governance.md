@@ -1,6 +1,7 @@
 # ADR-0006: Architecture Enforcement and Governance
 
-- **Status:** Proposed
+- **Status:** Accepted
+- **Accepted:** 2026-07-14
 - **Date:** 2026-07-14
 - **Deciders:** Noventra platform architecture
 - **Tags:** governance, ci, boundaries, outbox, events, modular-monolith, documentation

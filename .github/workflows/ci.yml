@@ -45,6 +45,17 @@ jobs:
             docs/architecture/invitation-acceptance-policy.md
             docs/architecture/business-capability-map.md
             docs/adr/0004-event-retention-replay-rebuild.md
+            docs/adr/0005-financial-truth-and-projection-ownership.md
+            docs/adr/0006-architecture-enforcement-and-governance.md
+            docs/reference/event-catalog.md
+            docs/reference/permission-catalog.md
+            docs/runbooks/event-replay.md
+            docs/runbooks/tenant-projection-rebuild.md
+            docs/runbooks/full-reporting-rebuild.md
+            docs/implementation/bootstrap-checklist.md
+            docs/implementation/core-bootstrap-plan.md
+            docs/implementation/architecture-automation-backlog.md
+            docs/reviews/architecture-readiness-reassessment.md
           )
           for f in "${required[@]}"; do
             if [[ ! -f "$f" ]]; then
@@ -69,8 +80,11 @@ jobs:
             docs/adr
             docs/standards
             docs/runbooks
+            docs/implementation
+            docs/reference
             docs/product
             docs/rfc
+            docs/reviews
             tests/e2e
             tests/contract
             tests/load

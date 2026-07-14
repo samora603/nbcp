@@ -14,6 +14,8 @@ Documentation is reviewed in pull requests like code. Prefer accurate living doc
 | [glossary.md](glossary.md) | Ubiquitous language |
 | [architecture/](architecture/README.md) | Architecture guides |
 | [reference/event-catalog.md](reference/event-catalog.md) | Canonical platform event inventory |
+| [reference/permission-catalog.md](reference/permission-catalog.md) | Canonical RBAC permission inventory |
+| [implementation/](implementation/README.md) | Bootstrap checklist, core plan, automation backlog |
 | [adr/](adr/README.md) | Architecture Decision Records |
 | [standards/](standards/README.md) | Engineering standards |
 | [runbooks/](runbooks/README.md) | Operational procedures |
