@@ -4,6 +4,6 @@ Formal design/architecture reviews for NBCP. Reviews are documentation only unle
 
 | Review | Scope | Date | Status |
 | --- | --- | --- | --- |
-| [kernel-review.md](kernel-review.md) | Identity, Tenancy, RBAC, Audit + ADR-0001/0002 | 2026-07-14 | Complete |
+| [kernel-review.md](kernel-review.md) | Identity, Tenancy, RBAC, Audit + ADR-0001/0002 | 2026-07-14 | Complete — K-01…K-05 remediated in architecture docs / ADR-0003 |
 
 Findings feed ADRs and design amendments; they do not by themselves change accepted ADRs.

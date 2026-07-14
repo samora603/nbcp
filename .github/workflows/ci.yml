@@ -39,6 +39,11 @@ jobs:
             docs/adr/0002-domain-map.md
             docs/architecture/domain-map.md
             docs/architecture/module-standard.md
+            docs/architecture/event-contracts.md
+            docs/adr/0003-event-contracts-and-outbox.md
+            docs/architecture/tenant-access-model.md
+            docs/architecture/invitation-acceptance-policy.md
+            docs/architecture/business-capability-map.md
           )
           for f in "${required[@]}"; do
             if [[ ! -f "$f" ]]; then

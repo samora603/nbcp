@@ -12,7 +12,8 @@ Vertical products are **thin compositions** of NBCP platform modules plus produc
 | Professional Services | [professional-services.md](professional-services.md) | Placeholder |
 | Property Management | [property.md](property.md) | Placeholder (additional vertical) |
 
-Domain boundaries for all verticals: [architecture/domain-map.md](../architecture/domain-map.md) ([ADR-0002](../adr/0002-domain-map.md)).
+Domain boundaries for all verticals: [architecture/domain-map.md](../architecture/domain-map.md) ([ADR-0002](../adr/0002-domain-map.md)).  
+Capability reuse matrix: [architecture/business-capability-map.md](../architecture/business-capability-map.md).
 
 ## Rules
 

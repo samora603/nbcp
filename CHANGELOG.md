@@ -21,6 +21,11 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [RBAC module design](docs/modules/rbac/design.md) (Core Platform — documentation only).
 - [Audit module design](docs/modules/audit/design.md) (Core Platform — documentation only).
 - [Kernel architecture review](docs/reviews/kernel-review.md) (Identity / Tenancy / RBAC / Audit).
+- [ADR-0003](docs/adr/0003-event-contracts-and-outbox.md) / [event contracts](docs/architecture/event-contracts.md); [tenant access model](docs/architecture/tenant-access-model.md); [invitation acceptance policy](docs/architecture/invitation-acceptance-policy.md) (remediate K-01…K-05).
+- [Parties module design](docs/modules/parties/design.md) (Shared Business — canonical business actors).
+- [Business capability map](docs/architecture/business-capability-map.md); [Catalog module design](docs/modules/catalog/design.md).
+- [Orders module design](docs/modules/orders/design.md) (Shared Business — commercial commitments).
+- [Inventory module design](docs/modules/inventory/design.md) (Shared Business — stock movements).
 
 ---
 

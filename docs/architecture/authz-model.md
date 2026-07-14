@@ -24,4 +24,6 @@ NBCP will use **RBAC** (roles and permissions) as the default authorization mode
 
 Design authority for RBAC evaluation and role/permission model: [`docs/modules/rbac/design.md`](../modules/rbac/design.md).
 
+Tenant access pipeline, location scope, and org admin bootstrap: [`tenant-access-model.md`](tenant-access-model.md).
+
 Authentication and authorization **runtimes** are not implemented until Phase 1+ modules are scaffolded.

@@ -18,12 +18,13 @@ Shared language for NBCP. Use these terms consistently in code, APIs, docs, and 
 | **Role** | A named set of permissions assigned within a tenant context. |
 | **Entitlement** | A plan- or license-gated capability for an organization. |
 | **Party** | A person or organization entity in CRM-style master data (canonical module: `parties`). |
-| **Customer** | Stakeholder term for a Party (or Party relationship) in a buying context — not a separate domain module. |
+| **Customer** | Stakeholder term for a Party (or Party relationship) in a buying context — **classification** on Party (`customer`), not a separate module. See [parties design](modules/parties/design.md). |
+| **Supplier / Vendor / Employee** | Party classifications (`supplier`, `vendor`, `employee`) on the Parties module — not separate modules. |
 | **Catalog / Catalog item** | A sellable or stockable item/service definition (canonical module: `catalog`). Stakeholder “product” usually means catalog item. |
-| **Order** | A commercial commitment (lines, amounts, lifecycle) shared across verticals (canonical module: `orders`). |
+| **Order** | A commercial commitment (lines, amounts, lifecycle) shared across verticals (canonical module: `orders`). Product entities (bookings, encounters, enrollments) reference `orderId` — they do not live inside Orders. See [orders design](modules/orders/design.md). |
 | **Payment** | Capture/refund lifecycle for settling a payable such as an order (canonical module: `payments`). |
 | **Ledger** | Append-oriented accounting posts and balances (canonical module: `ledger`). |
-| **Inventory** | Stock quantities and movements for stockable SKUs — not rooms or dining tables (canonical module: `inventory`). |
+| **Inventory** | Stock quantities and movements for stockable SKUs — not rooms or dining tables (canonical module: `inventory`). Products correlate via `externalRef` / movement ids. See [inventory design](modules/inventory/design.md). |
 | **Scheduling** | Industry-neutral resources and time entries (canonical module: `scheduling`). |
 | **Reservation** | Restaurant-specific dining reservation context — **not** a shared-business entity. |
 | **Booking** | Hotel-specific stay booking context — product domain; may use scheduling/orders. |

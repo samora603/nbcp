@@ -9,6 +9,8 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
+**Normative companion:** [Tenant access model](../../architecture/tenant-access-model.md) (bootstrap, location scope) · [Invitation acceptance policy](../../architecture/invitation-acceptance-policy.md)
+
 ---
 
 ## 1. Purpose

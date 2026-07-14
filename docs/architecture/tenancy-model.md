@@ -20,4 +20,9 @@ NBCP is **multi-tenant**. The primary tenant boundary is an **Organization**.
 
 ## Status
 
-Model is defined at Phase 0.1. Schemas, middleware, and enforcement land in Phase 1+.
+Row-level multi-tenancy principles remain as above.
+
+**Access composition** (membership vs RBAC location vs owner bootstrap): see [`tenant-access-model.md`](tenant-access-model.md).  
+**Invitation accept / email bind:** see [`invitation-acceptance-policy.md`](invitation-acceptance-policy.md).
+
+Schemas, middleware, and enforcement land in Phase 1+.

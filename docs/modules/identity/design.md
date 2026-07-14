@@ -9,6 +9,8 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
+**Normative companion:** [Event contracts & outbox](../../architecture/event-contracts.md) ([ADR-0003](../../adr/0003-event-contracts-and-outbox.md)) — Identity security events must use transactional outbox; Identity still imports no other modules
+
 ---
 
 ## 1. Purpose

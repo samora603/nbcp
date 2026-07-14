@@ -317,9 +317,21 @@ Prioritized for architectural correctness before implementation velocity.
 
 ## 11. Conclusion
 
-Identity, Tenancy, RBAC, and Audit are **well-bounded Core designs** that correctly keep AuthN, tenancy, AuthZ, and audit trails separable and reusable across verticals. The architecture scores highly on dependency hygiene. Before treating the kernel as implementation-ready for production-bound phases, close **K-01 through K-05**: outbox/contracts, admin bootstrap, location semantics, and invitation identity binding.
+Identity, Tenancy, RBAC, and Audit are **well-bounded Core designs** that correctly keep AuthN, tenancy, AuthZ, and audit trails separable and reusable across verticals. The architecture scores highly on dependency hygiene.
 
-**Recommendation:** Accept this review; open follow-up ADRs for event contracts and org bootstrap; then scaffold modules strictly against the DAG and module standard.
+### Remediation status (K-01 … K-05)
+
+| Finding | Resolution document | Status |
+| --- | --- | --- |
+| **K-01** | [event-contracts.md](../architecture/event-contracts.md), [ADR-0003](../adr/0003-event-contracts-and-outbox.md) | **Resolved (docs)** |
+| **K-02** | [tenant-access-model.md](../architecture/tenant-access-model.md) §4 | **Resolved (docs)** |
+| **K-03** | [tenant-access-model.md](../architecture/tenant-access-model.md) §3 | **Resolved (docs)** |
+| **K-04** | [ADR-0003](../adr/0003-event-contracts-and-outbox.md), [event-contracts.md](../architecture/event-contracts.md) | **Resolved (docs)** |
+| **K-05** | [invitation-acceptance-policy.md](../architecture/invitation-acceptance-policy.md) | **Resolved (docs)** |
+
+Scaffolding must implement these standards; documentation closure is necessary but not sufficient without tests listed therein.
+
+**Recommendation:** Treat K-01–K-05 design remediation as accepted; proceed to scaffolds only with outbox, bootstrap composer, location rules, and invite email bind enforced in tests.
 
 ---
 
