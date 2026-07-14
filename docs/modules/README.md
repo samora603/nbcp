@@ -12,5 +12,10 @@ Design specs for NBCP domain modules. Implementation follows [`docs/architecture
 | Catalog | Shared Business | [catalog/design.md](catalog/design.md) |
 | Orders | Shared Business | [orders/design.md](orders/design.md) |
 | Inventory | Shared Business | [inventory/design.md](inventory/design.md) |
+| Ledger | Shared Business | [ledger/design.md](ledger/design.md) |
+| Payments | Shared Business | [payments/design.md](payments/design.md) |
+| Scheduling | Shared Business | [scheduling/design.md](scheduling/design.md) |
+| Notifications | Shared Business | [notifications/design.md](notifications/design.md) |
+| Reporting | Shared Business | [reporting/design.md](reporting/design.md) |
 
 Add a row here when each module receives a design doc. Designs precede code.

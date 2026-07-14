@@ -26,6 +26,11 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [Business capability map](docs/architecture/business-capability-map.md); [Catalog module design](docs/modules/catalog/design.md).
 - [Orders module design](docs/modules/orders/design.md) (Shared Business — commercial commitments).
 - [Inventory module design](docs/modules/inventory/design.md) (Shared Business — stock movements).
+- [Ledger module design](docs/modules/ledger/design.md) (Shared Business — append-only accounting).
+- [Payments module design](docs/modules/payments/design.md) (Shared Business — intents, capture, refunds).
+- [Scheduling module design](docs/modules/scheduling/design.md) (Shared Business — resources & allocations).
+- [Notifications module design](docs/modules/notifications/design.md) (Shared Business — templates & dispatch).
+- [Reporting module design](docs/modules/reporting/design.md) (Shared Business — projections & exports).
 
 ---
 
