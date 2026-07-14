@@ -44,6 +44,7 @@ jobs:
             docs/architecture/tenant-access-model.md
             docs/architecture/invitation-acceptance-policy.md
             docs/architecture/business-capability-map.md
+            docs/adr/0004-event-retention-replay-rebuild.md
           )
           for f in "${required[@]}"; do
             if [[ ! -f "$f" ]]; then

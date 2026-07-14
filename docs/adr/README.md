@@ -9,6 +9,9 @@ Architecture Decision Records (ADRs) capture significant, durable choices for NB
 | [0001](0001-platform-technology-foundation.md) | Platform technology & modular monolith foundation | Accepted |
 | [0002](0002-domain-map.md) | NBCP domain map (core / shared / product) | Accepted |
 | [0003](0003-event-contracts-and-outbox.md) | Event contracts and transactional outbox | Accepted |
+| [0004](0004-event-retention-replay-rebuild.md) | Event retention, replay, and projection rebuild | Proposed |
+| [0005](0005-financial-truth-and-projection-ownership.md) | Financial truth and projection ownership | Proposed |
+| [0006](0006-architecture-enforcement-and-governance.md) | Architecture enforcement and governance | Proposed |
 
 ## Process
 

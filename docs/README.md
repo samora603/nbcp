@@ -13,6 +13,7 @@ Documentation is reviewed in pull requests like code. Prefer accurate living doc
 | [vision.md](vision.md) | Platform vision and non-goals |
 | [glossary.md](glossary.md) | Ubiquitous language |
 | [architecture/](architecture/README.md) | Architecture guides |
+| [reference/event-catalog.md](reference/event-catalog.md) | Canonical platform event inventory |
 | [adr/](adr/README.md) | Architecture Decision Records |
 | [standards/](standards/README.md) | Engineering standards |
 | [runbooks/](runbooks/README.md) | Operational procedures |

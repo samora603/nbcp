@@ -6,7 +6,7 @@
 **Domain placement:** [domain-map.md](domain-map.md) / [ADR-0002](../adr/0002-domain-map.md)  
 **Canonical template:** [`modules/_templates/domain-module/`](../../modules/_templates/domain-module/)
 
-This standard defines the mandatory internal structure, boundaries, and prohibited patterns for NBCP modules. Generators and reviews must enforce it. Deviation requires an ADR.
+This standard defines the mandatory internal structure, boundaries, and prohibited patterns for NBCP modules. Generators, reviews, and CI gates ([ADR-0006](../adr/0006-architecture-enforcement-and-governance.md)) must enforce it. Deviation requires an ADR (or a time-boxed exception per ADR-0006).
 
 ---
 

@@ -31,6 +31,12 @@ and this project will adhere to [Semantic Versioning](https://semver.org/spec/v2
 - [Scheduling module design](docs/modules/scheduling/design.md) (Shared Business — resources & allocations).
 - [Notifications module design](docs/modules/notifications/design.md) (Shared Business — templates & dispatch).
 - [Reporting module design](docs/modules/reporting/design.md) (Shared Business — projections & exports).
+- [Shared domains review](docs/reviews/shared-domains-review.md); [Platform architecture review](docs/reviews/platform-architecture-review.md).
+- [Architecture hardening review](docs/reviews/architecture-hardening-review.md) (conditionally ready — governance gaps before money path).
+- [ADR-0004](docs/adr/0004-event-retention-replay-rebuild.md) (Proposed — event retention, replay, rebuild).
+- [Event catalog](docs/reference/event-catalog.md) (authoritative domain-event inventory; remediates hardening S-02 / P-02).
+- [ADR-0005](docs/adr/0005-financial-truth-and-projection-ownership.md) (Proposed — financial truth and projection ownership; remediates hardening S-03).
+- [ADR-0006](docs/adr/0006-architecture-enforcement-and-governance.md) (Proposed — architecture enforcement and governance; remediates hardening P-01 / P-03 / P-09).
 
 ---
 

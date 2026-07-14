@@ -48,7 +48,7 @@ NBCP must preserve:
 ### Follow-ups
 
 - Implement outbox schema in the database package when scaffolding begins.
-- CI test: security event emitted ⇒ outbox row; consumer idempotency.
+- CI / architecture tests: security event emitted ⇒ outbox row; consumer idempotency ([ADR-0006](0006-architecture-enforcement-and-governance.md)).
 - Update [eventing.md](../architecture/eventing.md) to point here as authority.
 
 ## Alternatives considered

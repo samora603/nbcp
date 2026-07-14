@@ -9,7 +9,7 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
-**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Domain map §5.9](../../architecture/domain-map.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md) · Shared designs: Parties, Catalog, Orders, Inventory, Ledger, Payments, Scheduling, Notifications
+**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Domain map §5.9](../../architecture/domain-map.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [ADR-0004](../../adr/0004-event-retention-replay-rebuild.md) · [ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md) (Ledger vs Reporting ownership) · [Tenant access model](../../architecture/tenant-access-model.md) · Shared designs: Parties, Catalog, Orders, Inventory, Ledger, Payments, Scheduling, Notifications
 
 ---
 
@@ -55,7 +55,7 @@ Same Reporting ARs for all: Definition, Dataset/Projection, ExportJob — not `R
 | **Inventory balances** | On-hand/reserved truth is Inventory | Project movements into stock analytics; drill-through may call Inventory query API |
 | **Ledger truth** | Append-only posts are Ledger | Trial balance / GL reports read Ledger APIs or project `ledger.journal.posted` for dashboards — Ledger remains authoritative for disputes |
 
-**Rebuild rule:** Any reporting table must be **rebuildable** from event logs / source modules. If Reporting disagrees with Inventory/Ledger/Orders, **source modules win**.
+- **Rebuild rule:** Any reporting table must be **rebuildable** from event logs / source modules per [ADR-0004](../../adr/0004-event-retention-replay-rebuild.md). If Reporting disagrees with Inventory/Ledger/Orders/Payments, **source modules win** ([ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md)).
 
 ---
 

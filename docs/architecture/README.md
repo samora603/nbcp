@@ -18,6 +18,13 @@ This section describes how NBCP is structured and why. Authoritative decisions l
 | [data-architecture.md](data-architecture.md) | PostgreSQL / Prisma / Supabase data approach |
 | [eventing.md](eventing.md) | Domain events overview |
 | [event-contracts.md](event-contracts.md) | Event envelope, outbox, idempotent consumers ([ADR-0003](../adr/0003-event-contracts-and-outbox.md)) |
+| [../reference/event-catalog.md](../reference/event-catalog.md) | Canonical event inventory (owners, class, replay, version) |
+| [event-catalog.md](event-catalog.md) | Stub → reference catalog |
+| [../adr/0004-event-retention-replay-rebuild.md](../adr/0004-event-retention-replay-rebuild.md) | Retention, replay, rebuild ([Proposed](../adr/0004-event-retention-replay-rebuild.md)) |
+| [../adr/0005-financial-truth-and-projection-ownership.md](../adr/0005-financial-truth-and-projection-ownership.md) | Financial truth: Ledger vs Reporting ([Proposed](../adr/0005-financial-truth-and-projection-ownership.md)) |
+| [financial-projection-ownership.md](financial-projection-ownership.md) | Stub → ADR-0005 |
+| [../adr/0006-architecture-enforcement-and-governance.md](../adr/0006-architecture-enforcement-and-governance.md) | Boundaries, outbox, CI governance ([Proposed](../adr/0006-architecture-enforcement-and-governance.md)) |
+| [architecture-enforcement.md](architecture-enforcement.md) | Stub → ADR-0006 |
 | [api-strategy.md](api-strategy.md) | Public and internal API strategy |
 | [frontend-architecture.md](frontend-architecture.md) | Next.js and design-system direction |
 | [deployment-topology.md](deployment-topology.md) | Environments and hosting topology |

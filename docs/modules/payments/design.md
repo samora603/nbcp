@@ -9,7 +9,7 @@
 | **Status** | Design only — no implementation in this document |
 | **Last updated** | 2026-07-14 |
 
-**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Orders](../orders/design.md) · [Ledger](../ledger/design.md) · [Parties](../parties/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md)
+**Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Orders](../orders/design.md) · [Ledger](../ledger/design.md) · [Parties](../parties/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md) (Payments SoR vs Ledger books) · [Tenant access model](../../architecture/tenant-access-model.md)
 
 ---
 
