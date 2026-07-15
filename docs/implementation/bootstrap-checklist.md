@@ -51,10 +51,10 @@ Legend: `[ ]` pending · `[x]` complete (mark in implementation PRs / project tr
 | S1 | Parties | Facade + events in catalog; permissions seeded | [x] `@nbcp/parties` |
 | S2 | Catalog | Items/prices; events catalogued | [x] `@nbcp/catalog` |
 | S3 | Orders | Commit/cancel path; outbox on material events | [x] `@nbcp/orders` |
-| S4 | Payments | Capture/refund SoR; **no** ledger table writes |
-| S5 | Ledger | Journals append-only; projector on capture per ADR-0005; idempotent `externalRef` |
-| S6 | Inventory | Movements; fulfillment timing policy documented before auto-handlers |
-| S7 | Reporting | Facts rebuildable; tooling cannot truncate non-Reporting stores |
+| S4 | Payments | Capture/refund SoR; **no** ledger table writes | [x] `@nbcp/payments` |
+| S5 | Ledger | Journals append-only; projector on capture per ADR-0005; idempotent `externalRef` | [x] `@nbcp/ledger` |
+| S6 | Inventory | Movements; ADR-0007 event consumption | [x] `@nbcp/inventory` |
+| S7 | Reporting | Facts rebuildable; projections from all SoR events | [x] `@nbcp/reporting` |
 | S8 | Permission sync | New keys in permission catalog + RBAC seed |
 | S9 | Event catalog sync | Every emitted `type` has a row |
 

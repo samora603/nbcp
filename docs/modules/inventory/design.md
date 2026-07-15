@@ -2,12 +2,12 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `inventory` (`modules/inventory` — future implementation) |
+| **Module** | `inventory` (`modules/inventory` — `@nbcp/inventory`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
-| **Last updated** | 2026-07-14 |
+| **Status** | S6 implemented — in-memory facade + kernel; Nest host deferred |
+| **Last updated** | 2026-07-15 |
 
 **Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Catalog](../catalog/design.md) · [Parties](../parties/design.md) · [Orders](../orders/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [Tenant access model](../../architecture/tenant-access-model.md) · **[ADR-0007 — Orders ↔ Inventory timing](../../adr/0007-orders-inventory-reservation-and-issue-timing.md)**
 

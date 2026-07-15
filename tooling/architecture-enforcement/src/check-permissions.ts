@@ -72,6 +72,10 @@ export function checkPermissionGovernance(repoRoot: string): CheckResult {
     "modules/parties/src/application/permissions.ts",
     "modules/catalog/src/application/permissions.ts",
     "modules/orders/src/application/permissions.ts",
+    "modules/payments/src/application/permissions.ts",
+    "modules/ledger/src/application/permissions.ts",
+    "modules/inventory/src/application/permissions.ts",
+    "modules/reporting/src/application/permissions.ts",
   ]) {
     const file = join(repoRoot, rel);
     if (!existsSync(file)) continue;

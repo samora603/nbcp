@@ -29,6 +29,10 @@ Domain modules (Core Platform, Shared Business, and Product-Specific capabilitie
 | [`parties`](parties/) (`@nbcp/parties`) | Shared | S1 implemented (party master data, classifications, contacts, lifecycle) |
 | [`catalog`](catalog/) (`@nbcp/catalog`) | Shared | S2 implemented (offerings, variants, list prices, lifecycle) |
 | [`orders`](orders/) (`@nbcp/orders`) | Shared | S3 implemented (commercial commitments, lines, fulfill/cancel; ADR-0007 intents) |
+| [`payments`](payments/) (`@nbcp/payments`) | Shared | S4 implemented (payment lifecycle, capture/refund; ADR-0005 events for Ledger) |
+| [`ledger`](ledger/) (`@nbcp/ledger`) | Shared | S5 implemented (immutable journals, event-driven posting, reversals) |
+| [`inventory`](inventory/) (`@nbcp/inventory`) | Shared | S6 implemented (stock SoR, ADR-0007 reserve/issue/release) |
+| [`reporting`](reporting/) (`@nbcp/reporting`) | Shared | S7 implemented (projections, KPIs, read-only analytics) |
 
 ## Template
 

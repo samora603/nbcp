@@ -80,6 +80,83 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.1)
 
+  modules/inventory:
+    dependencies:
+      '@nbcp/audit':
+        specifier: workspace:*
+        version: link:../audit
+      '@nbcp/identity':
+        specifier: workspace:*
+        version: link:../identity
+      '@nbcp/outbox':
+        specifier: workspace:*
+        version: link:../../packages/outbox
+      '@nbcp/rbac':
+        specifier: workspace:*
+        version: link:../rbac
+      '@nbcp/tenancy':
+        specifier: workspace:*
+        version: link:../tenancy
+    devDependencies:
+      '@nbcp/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@nbcp/orders':
+        specifier: workspace:*
+        version: link:../orders
+      '@nbcp/parties':
+        specifier: workspace:*
+        version: link:../parties
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  modules/ledger:
+    dependencies:
+      '@nbcp/audit':
+        specifier: workspace:*
+        version: link:../audit
+      '@nbcp/identity':
+        specifier: workspace:*
+        version: link:../identity
+      '@nbcp/outbox':
+        specifier: workspace:*
+        version: link:../../packages/outbox
+      '@nbcp/rbac':
+        specifier: workspace:*
+        version: link:../rbac
+      '@nbcp/tenancy':
+        specifier: workspace:*
+        version: link:../tenancy
+    devDependencies:
+      '@nbcp/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@nbcp/orders':
+        specifier: workspace:*
+        version: link:../orders
+      '@nbcp/parties':
+        specifier: workspace:*
+        version: link:../parties
+      '@nbcp/payments':
+        specifier: workspace:*
+        version: link:../payments
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
   modules/orders:
     dependencies:
       '@nbcp/audit':
@@ -142,6 +219,43 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.1)
 
+  modules/payments:
+    dependencies:
+      '@nbcp/audit':
+        specifier: workspace:*
+        version: link:../audit
+      '@nbcp/identity':
+        specifier: workspace:*
+        version: link:../identity
+      '@nbcp/orders':
+        specifier: workspace:*
+        version: link:../orders
+      '@nbcp/outbox':
+        specifier: workspace:*
+        version: link:../../packages/outbox
+      '@nbcp/rbac':
+        specifier: workspace:*
+        version: link:../rbac
+      '@nbcp/tenancy':
+        specifier: workspace:*
+        version: link:../tenancy
+    devDependencies:
+      '@nbcp/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@nbcp/parties':
+        specifier: workspace:*
+        version: link:../parties
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
   modules/rbac:
     dependencies:
       '@nbcp/identity':
@@ -154,6 +268,52 @@ importers:
         specifier: workspace:*
         version: link:../tenancy
     devDependencies:
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.1)
+
+  modules/reporting:
+    dependencies:
+      '@nbcp/audit':
+        specifier: workspace:*
+        version: link:../audit
+      '@nbcp/identity':
+        specifier: workspace:*
+        version: link:../identity
+      '@nbcp/outbox':
+        specifier: workspace:*
+        version: link:../../packages/outbox
+      '@nbcp/rbac':
+        specifier: workspace:*
+        version: link:../rbac
+      '@nbcp/tenancy':
+        specifier: workspace:*
+        version: link:../tenancy
+    devDependencies:
+      '@nbcp/catalog':
+        specifier: workspace:*
+        version: link:../catalog
+      '@nbcp/inventory':
+        specifier: workspace:*
+        version: link:../inventory
+      '@nbcp/ledger':
+        specifier: workspace:*
+        version: link:../ledger
+      '@nbcp/orders':
+        specifier: workspace:*
+        version: link:../orders
+      '@nbcp/parties':
+        specifier: workspace:*
+        version: link:../parties
+      '@nbcp/payments':
+        specifier: workspace:*
+        version: link:../payments
       '@types/node':
         specifier: ^22.10.0
         version: 22.20.1

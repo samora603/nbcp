@@ -485,3 +485,189 @@ jobs:
           pnpm enforce:architecture
         env:
           NBCP_ROOT: ${{ github.workspace }}
+
+  payments:
+    name: S4 payments module
+    runs-on: ubuntu-latest
+    needs: orders
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+          pnpm --filter @nbcp/parties build
+          pnpm --filter @nbcp/catalog build
+          pnpm --filter @nbcp/orders build
+
+      - name: Test @nbcp/payments
+        run: pnpm --filter @nbcp/payments test
+
+      - name: Typecheck @nbcp/payments
+        run: pnpm --filter @nbcp/payments typecheck
+
+      - name: Build @nbcp/payments
+        run: pnpm --filter @nbcp/payments build
+
+      - name: Re-run architecture enforcement (Shared S4 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+  ledger:
+    name: S5 ledger module
+    runs-on: ubuntu-latest
+    needs: payments
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+
+      - name: Test @nbcp/ledger
+        run: pnpm --filter @nbcp/ledger test
+
+      - name: Typecheck @nbcp/ledger
+        run: pnpm --filter @nbcp/ledger typecheck
+
+      - name: Build @nbcp/ledger
+        run: pnpm --filter @nbcp/ledger build
+
+      - name: Re-run architecture enforcement (Shared S5 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+  inventory:
+    name: S6 inventory module
+    runs-on: ubuntu-latest
+    needs: ledger
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+          pnpm --filter @nbcp/parties build
+          pnpm --filter @nbcp/catalog build
+          pnpm --filter @nbcp/orders build
+
+      - name: Test @nbcp/inventory
+        run: pnpm --filter @nbcp/inventory test
+
+      - name: Typecheck @nbcp/inventory
+        run: pnpm --filter @nbcp/inventory typecheck
+
+      - name: Build @nbcp/inventory
+        run: pnpm --filter @nbcp/inventory build
+
+      - name: Re-run architecture enforcement (Shared S6 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}
+
+  reporting:
+    name: S7 reporting module
+    runs-on: ubuntu-latest
+    needs: inventory
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.15.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build dependencies
+        run: |
+          pnpm --filter @nbcp/outbox build
+          pnpm --filter @nbcp/identity build
+          pnpm --filter @nbcp/tenancy build
+          pnpm --filter @nbcp/rbac build
+          pnpm --filter @nbcp/audit build
+
+      - name: Test @nbcp/reporting
+        run: pnpm --filter @nbcp/reporting test
+
+      - name: Typecheck @nbcp/reporting
+        run: pnpm --filter @nbcp/reporting typecheck
+
+      - name: Build @nbcp/reporting
+        run: pnpm --filter @nbcp/reporting build
+
+      - name: Re-run architecture enforcement (Shared S7 included)
+        run: |
+          pnpm --filter @nbcp/architecture-enforcement build
+          pnpm enforce:architecture
+        env:
+          NBCP_ROOT: ${{ github.workspace }}

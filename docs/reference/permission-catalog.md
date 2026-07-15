@@ -175,6 +175,9 @@ Balances are derived; no separate “balance.manage” permission.
 | Permission key | Module owner | Description | Intended roles |
 | --- | --- | --- | --- |
 | `reporting.sales.read` | Reporting | Run operational sales reports (non-book) | `organization.administrator`, `location.manager`, `staff`, `finance.operator` |
+| `reporting.read` | Reporting | View reporting projections and reports (S7) | `organization.administrator`, `finance.operator`, `auditor` |
+| `reporting.kpi.read` | Reporting | View KPI dashboards (S7) | `organization.administrator`, `finance.operator`, `auditor` |
+| `reporting.export` | Reporting | Export reporting datasets (S7) | `organization.administrator`, `finance.operator`, `auditor` |
 | `reporting.inventory.read` | Reporting | Stock analytics | `organization.administrator`, `location.manager` |
 | `reporting.finance.read` | Reporting | Payment/ledger **dashboards** (non-authoritative books) | `organization.administrator`, `finance.operator`, `finance.controller`, `auditor` |
 | `reporting.export.request` | Reporting | Request exports | `organization.administrator`, `finance.operator`, `auditor` |

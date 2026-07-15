@@ -2,12 +2,12 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `reporting` (`modules/reporting` — future implementation) |
+| **Module** | `reporting` (`modules/reporting` — `@nbcp/reporting`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
-| **Last updated** | 2026-07-14 |
+| **Status** | S7 implemented — in-memory projections + KPIs; Nest host deferred |
+| **Last updated** | 2026-07-15 |
 
 **Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Domain map §5.9](../../architecture/domain-map.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [ADR-0004](../../adr/0004-event-retention-replay-rebuild.md) · [ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md) (Ledger vs Reporting ownership) · [Tenant access model](../../architecture/tenant-access-model.md) · Shared designs: Parties, Catalog, Orders, Inventory, Ledger, Payments, Scheduling, Notifications
 

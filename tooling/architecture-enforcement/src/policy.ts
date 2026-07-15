@@ -81,6 +81,51 @@ export const SHARED_PACKAGE_POLICY: readonly PackagePolicy[] = [
       "@nbcp/catalog",
     ],
   },
+  {
+    path: "modules/payments",
+    name: "@nbcp/payments",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+      "@nbcp/orders",
+    ],
+  },
+  {
+    path: "modules/ledger",
+    name: "@nbcp/ledger",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+    ],
+  },
+  {
+    path: "modules/inventory",
+    name: "@nbcp/inventory",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+    ],
+  },
+  {
+    path: "modules/reporting",
+    name: "@nbcp/reporting",
+    layer: "SHARED",
+    allowedModuleDeps: [
+      "@nbcp/identity",
+      "@nbcp/tenancy",
+      "@nbcp/rbac",
+      "@nbcp/audit",
+    ],
+  },
 ];
 
 export const INFRA_PACKAGES: readonly PackagePolicy[] = [
@@ -101,6 +146,19 @@ export const FORBIDDEN_EDGES: ReadonlyArray<readonly [string, string]> = [
   ["@nbcp/tenancy", "@nbcp/audit"],
   ["@nbcp/rbac", "@nbcp/audit"],
   ["@nbcp/payments", "@nbcp/ledger"],
+  ["@nbcp/ledger", "@nbcp/orders"],
+  ["@nbcp/ledger", "@nbcp/payments"],
+  ["@nbcp/ledger", "@nbcp/inventory"],
+  ["@nbcp/ledger", "@nbcp/reporting"],
+  ["@nbcp/inventory", "@nbcp/orders"],
+  ["@nbcp/inventory", "@nbcp/payments"],
+  ["@nbcp/inventory", "@nbcp/ledger"],
+  ["@nbcp/inventory", "@nbcp/reporting"],
+  ["@nbcp/reporting", "@nbcp/orders"],
+  ["@nbcp/reporting", "@nbcp/payments"],
+  ["@nbcp/reporting", "@nbcp/inventory"],
+  ["@nbcp/reporting", "@nbcp/ledger"],
+  ["@nbcp/reporting", "@nbcp/catalog"],
 ];
 
 export const DOMAIN_MODULE_NAMES = new Set([

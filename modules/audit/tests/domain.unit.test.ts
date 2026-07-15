@@ -30,6 +30,8 @@ describe("audit domain unit", () => {
       "FINANCIAL",
     );
     expect(classifyEnvelopeType("orders.order.committed")).toBe("BUSINESS");
+    expect(classifyEnvelopeType("inventory.stock.reserved")).toBe("BUSINESS");
+    expect(classifyEnvelopeType("reporting.export.completed")).toBe("BUSINESS");
     expect(classifyEnvelopeType("unknown.module.event")).toBe("IGNORE");
   });
 

@@ -133,7 +133,8 @@ export function checkPackageBoundaries(repoRoot: string): CheckResult {
           "reporting",
         ];
         // Upstream shared packages must not depend on Orders (DAG: Inventory → Orders).
-        if (pkg.name !== "@nbcp/orders") {
+        // Payments may depend on Orders for payable validation.
+        if (pkg.name !== "@nbcp/orders" && pkg.name !== "@nbcp/payments") {
           forbiddenDownstream.push("orders");
         }
         // Parties must not take a Catalog edge (DAG: Catalog → Parties).

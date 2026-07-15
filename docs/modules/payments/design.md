@@ -2,12 +2,12 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `payments` (`modules/payments` — future implementation) |
+| **Module** | `payments` (`modules/payments` — `@nbcp/payments`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
-| **Last updated** | 2026-07-14 |
+| **Status** | S4 implemented — in-memory facade + kernel; Nest host deferred |
+| **Last updated** | 2026-07-15 |
 
 **Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Orders](../orders/design.md) · [Ledger](../ledger/design.md) · [Parties](../parties/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md) (Payments SoR vs Ledger books) · [Tenant access model](../../architecture/tenant-access-model.md)
 

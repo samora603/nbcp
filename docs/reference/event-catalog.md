@@ -229,19 +229,23 @@ Populate-from: module `docs/modules/*/design.md` Event sections. Modules not yet
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | `inventory.stock_item.created` | Inventory | BUSINESS | Audit, Reporting | Yes | 1 | Planned |
-| `inventory.stock.received` | Inventory | BUSINESS | Audit, Ledger (optional), Product, Reporting | Yes | 1 | Planned |
-| `inventory.stock.issued` | Inventory | BUSINESS | Audit, Product, Reporting | Yes | 1 | Planned |
+| `inventory.stock.received` | Inventory | BUSINESS | Audit, Ledger (optional), Product, Reporting | Yes | 1 | Published |
+| `inventory.stock.issued` | Inventory | BUSINESS | Audit, Product, Reporting | Yes | 1 | Published |
 | `inventory.stock.transferred` | Inventory | BUSINESS | Audit, Reporting | Yes | 1 | Planned |
-| `inventory.stock.adjusted` | Inventory | BUSINESS | Audit (**mandatory**), Reporting | Yes | 1 | Planned |
-| `inventory.stock.reserved` | Inventory | BUSINESS | Orders fulfillment aids | Yes | 1 | Planned |
-| `inventory.reservation.released` | Inventory | BUSINESS | Orders fulfillment aids | Yes | 1 | Planned |
+| `inventory.stock.adjusted` | Inventory | BUSINESS | Audit (**mandatory**), Reporting | Yes | 1 | Published |
+| `inventory.stock.reserved` | Inventory | BUSINESS | Orders fulfillment aids | Yes | 1 | Published |
+| `inventory.stock.released` | Inventory | BUSINESS | Orders fulfillment aids | Yes | 1 | Published |
 | `inventory.stock.low` | Inventory | OPERATIONAL | Notifications | Yes | 1 | Planned |
 
 ### Payments
 
 | Event | Owner Module | Classification | Consumers | Replayable | Version | Status |
 | --- | --- | --- | --- | --- | --- | --- |
-| `payments.payment.created` | Payments | FINANCIAL | Audit, Product UX | Yes | 1 | Planned |
+| `payments.payment.created` | Payments | FINANCIAL | Audit, Product UX, **Ledger** (S5) | Yes | 1 | Published |
+| `payments.payment.authorized` | Payments | FINANCIAL | Audit, Product | Yes | 1 | Published |
+| `payments.payment.captured` | Payments | FINANCIAL | **Ledger**, Orders (paid policy), Audit (**mandatory**), Reporting | Conditional | 1 | Published |
+| `payments.payment.voided` | Payments | FINANCIAL | Ledger optional reverse, Audit | Conditional | 1 | Published |
+| `payments.payment.refunded` | Payments | FINANCIAL | **Ledger**, Orders, Audit (**mandatory**), Reporting | Conditional | 1 | Published |
 | `payments.authorization.succeeded` | Payments | FINANCIAL | Audit, Product | Yes | 1 | Planned |
 | `payments.authorization.failed` | Payments | FINANCIAL | Audit, Product | Yes | 1 | Planned |
 | `payments.capture.succeeded` | Payments | FINANCIAL | **Ledger**, Orders (paid policy), Audit (**mandatory**), Reporting | Conditional | 1 | Planned |
@@ -257,8 +261,8 @@ Populate-from: module `docs/modules/*/design.md` Event sections. Modules not yet
 | --- | --- | --- | --- | --- | --- | --- |
 | `ledger.account.created` | Ledger | FINANCIAL | Audit, Reporting | Yes | 1 | Planned |
 | `ledger.account.updated` | Ledger | FINANCIAL | Audit, Reporting | Yes | 1 | Planned |
-| `ledger.journal.posted` | Ledger | FINANCIAL | Audit (**mandatory**), Reporting (dashboards only) | Conditional | 1 | Planned |
-| `ledger.journal.reversed` | Ledger | FINANCIAL | Audit (**mandatory**), Reporting | Conditional | 1 | Planned |
+| `ledger.journal.posted` | Ledger | FINANCIAL | Audit (**mandatory**), Reporting (dashboards only) | Conditional | 1 | Published |
+| `ledger.journal.reversed` | Ledger | FINANCIAL | Audit (**mandatory**), Reporting | Conditional | 1 | Published |
 | `ledger.balance.changed` | Ledger | FINANCIAL | Cache warmers (optional) | Conditional | 1 | Planned |
 
 > **Ledger protection:** Replaying `ledger.journal.posted` must **not** delete posted journals or truncate books. Corrections are **reversals** ([ADR-0004](../adr/0004-event-retention-replay-rebuild.md)). Reporting may project these events; Ledger remains SoR for disputes.

@@ -38,7 +38,9 @@ export function classifyEnvelopeType(type: string): IngestEventClass {
   if (
     type.startsWith("parties.") ||
     type.startsWith("catalog.") ||
-    type.startsWith("orders.")
+    type.startsWith("orders.") ||
+    type.startsWith("inventory.") ||
+    type.startsWith("reporting.")
   ) {
     return "BUSINESS";
   }

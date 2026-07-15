@@ -2,12 +2,12 @@
 
 | Field | Value |
 | --- | --- |
-| **Module** | `ledger` (`modules/ledger` — future implementation) |
+| **Module** | `ledger` (`modules/ledger` — `@nbcp/ledger`) |
 | **Layer** | Shared Business ([ADR-0002](../../adr/0002-domain-map.md)) |
 | **Stack** | NestJS + Prisma ([ADR-0001](../../adr/0001-platform-technology-foundation.md)) |
 | **Structure** | [Module standard](../../architecture/module-standard.md) |
-| **Status** | Design only — no implementation in this document |
-| **Last updated** | 2026-07-14 |
+| **Status** | S5 implemented — in-memory facade + kernel; Nest host deferred |
+| **Last updated** | 2026-07-15 |
 
 **Normative companions:** [Business capability map](../../architecture/business-capability-map.md) · [Orders](../orders/design.md) · [Inventory](../inventory/design.md) · [Event contracts / ADR-0003](../../architecture/event-contracts.md) · [ADR-0005](../../adr/0005-financial-truth-and-projection-ownership.md) (financial truth; Payments→Ledger mapping) · [Tenant access model](../../architecture/tenant-access-model.md) · [Audit](../audit/design.md)
 

@@ -1,0 +1,46 @@
+{
+  "name": "@nbcp/inventory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NBCP Inventory Shared module — stock SoR, reservations, movements (S6)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@nbcp/outbox": "workspace:*",
+    "@nbcp/identity": "workspace:*",
+    "@nbcp/tenancy": "workspace:*",
+    "@nbcp/rbac": "workspace:*",
+    "@nbcp/audit": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@nbcp/parties": "workspace:*",
+    "@nbcp/catalog": "workspace:*",
+    "@nbcp/orders": "workspace:*",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "nbcp": {
+    "layer": "SHARED",
+    "milestone": "S6",
+    "moduleDependencies": ["identity", "tenancy", "rbac", "audit"]
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
